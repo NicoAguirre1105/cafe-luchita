@@ -1,11 +1,13 @@
 export default function Slide({
-  children
+  children,
+  className
 }: {
-  children: React.ReactNode
+  children: React.ReactNode,
+  className?: string
 }){
 
   return (
-    <article>
+    <article className={`${className} h-dvh w-full flex flex-col`}>
       {children}
     </article>
   )

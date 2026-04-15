@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${montserrat.className}`}
+        className={`${montserrat.className} bg-black`}
         cz-shortcut-listen="true"
       >
         {children}

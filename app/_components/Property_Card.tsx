@@ -5,7 +5,7 @@ export default function PropertyCard({
 }) {
 
   return(
-    <article className="">
+    <article className="flex flex-col text-(--green) text-xl px-15 text-center">
       {children}
     </article>
   )

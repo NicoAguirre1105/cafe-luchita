@@ -6,25 +6,30 @@ import Link from "next/link"
 export default function Header() {
 
   return (
-    <header>
+    <header 
+      className="
+      absolute top-0 left-0 w-full z-50
+      px-6 py-4">
       {/* Header Mobile */}
-      <div className="">
+      <div className="flex items-center justify-between">
+      <Link href="#">
       <Image 
         src="/logos/logo_cream.svg"
         alt="Logo de Café Luchita"
         width={24}
         height={24}
-        className=""
+        className="h-10 w-auto"
       />
+      </Link>
       <Image 
         src="/icons/menu_cream.svg"
         alt="Logo de Café Luchita"
         width={24}
         height={24}
-        className=""
+        className="h-10 w-auto cursor-pointer hover:scale-105"
       />
       </div>
-      <nav>
+      <nav className="hidden">
         <ul>
           <Link href="#"><li>Inicio</li></Link>
           <Link href="#Product"><li>Producto</li></Link>
@@ -33,7 +38,7 @@ export default function Header() {
         </ul>
       </nav>
       {/* Header Desktop */}
-      <div className="">
+      <div className="hidden">
       <nav>
         <ul>
           <Link href="#"><li>Inicio</li></Link>
