@@ -25,6 +25,13 @@ export default function AboutUs() {
         className="w-full h-auto rounded-sm border-3 border-(--cream) max-w-80"
       />
       <p className="text-base md:text-lg max-w-150 text-justify md:text-center">Agradecemos a todos los caficultores y agricultores en general de Cararango por su dedicación y esmero por producir este producto tradicional fundamental en nuestro día a día.</p>
+      <Image 
+        src="/img/about_3.jpeg"
+        alt="Cosecha de cafe"
+        width={1080}
+        height={1220}
+        className="w-full h-auto rounded-sm border-3 border-(--cream) max-w-80"
+      />
     </section>
   )
 }
