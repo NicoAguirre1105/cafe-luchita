@@ -7,7 +7,8 @@ export default function Properties() {
 
   return (
     <>
-    <section className="bg-(--cream) py-20 flex flex-col items-center gap-15">
+    <section className="bg-(--cream) py-20 flex flex-wrap justify-center md:py-30">
+      <h2 className="w-full text-3xl text-(--green) text-center font-bold mb-10 md:text-4xl">Beneficios</h2>
       <PropertyCard>
         <Image 
           src="/icons/plant_green.svg"
@@ -16,7 +17,7 @@ export default function Properties() {
           height={24}
           className="h-20 w-auto"
           />
-        <p>Sin químicos ni conservantes</p>
+        <p className="text-base md:text-lg">Sin químicos ni conservantes</p>
       </PropertyCard>
       <PropertyCard>
         <Image 
@@ -26,7 +27,7 @@ export default function Properties() {
           height={24}
           className="h-20 w-auto"
           />  
-        <p>Entrega a domicilio</p>
+        <p className="text-base md:text-lg">Entrega a domicilio</p>
       </PropertyCard>
       <PropertyCard>
         <Image 
@@ -36,7 +37,7 @@ export default function Properties() {
           height={24}
           className="h-20 w-auto"
           />
-        <p>Café 100% natural</p>
+        <p className="text-base md:text-lg">Café 100% natural</p>
       </PropertyCard>
     </section>
     </>
