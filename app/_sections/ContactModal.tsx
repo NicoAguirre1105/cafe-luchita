@@ -72,7 +72,7 @@ export default function ContactModal({
         </div> 
         }
         {state.succeeded &&
-          <div className="bg-(--green) text-(--white) rounded-md flex flex-col p-5 gap-5 md:px-10 md:py-15 h-130 items-center ">
+          <div className="bg-(--green) text-(--white) rounded-md flex flex-col px-5 py-15 gap-5 md:px-10 md:py-15 h-130 items-center ">
             <h3 className="text-lg md:text-xl text-center font-bold">El formulario enviado correctamente!</h3>
             <Image 
             src="/icons/done_white.svg"
