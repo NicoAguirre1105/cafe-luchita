@@ -14,10 +14,18 @@ export default function Hero({
 ) {
 
   return(
+    <>
+    <Image 
+        src="/img/landing-bg-mobile.jpeg"
+        alt="Cafe Luchita"
+        width={6000}
+        height={4000}
+        className="absolute h-dvh object-cover -z-1 opacity-50"
+      />
     <section 
       className="
         relative flex flex-col justify-center
-        min-h-dvh w-full bg-container p-6 gap-3 text-(--cream) items-end md:py-10 md:px-20
+        min-h-dvh w-full p-6 gap-3 text-(--cream) items-end md:py-10 md:px-20
       "
       id="Inicio"
     >
@@ -35,5 +43,6 @@ export default function Hero({
         Hacer un pedido
       </button>
     </section>
+    </>
   )
 }
