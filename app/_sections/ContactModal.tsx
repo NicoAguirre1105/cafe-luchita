@@ -2,6 +2,8 @@
 
 import { useForm, ValidationError } from "@formspree/react"
 import InfoModal from "../_components/InfoModal"
+import { Spinner } from "../_components/Spinner"
+import Image from "next/image"
 
 export default function ContactModal({
   isContactModalOpen
@@ -9,7 +11,13 @@ export default function ContactModal({
   isContactModalOpen: boolean
 }){
 
-  const [state, handleSubmit] = useForm("mrerpaww")
+  const [state, handleSubmit, reset] = useForm("mrerpaww")
+
+  if (state.succeeded) {
+    setTimeout(() => {
+      reset()
+    }, 4000);
+  }
 
   return (
     <section className={`fixed h-full bg-(--cream) w-full z-45 border-b-3 border-x-3 border-(--green) text-(--green) overflow-y-auto
@@ -28,25 +36,26 @@ export default function ContactModal({
         </address>
       </div>
       <div className="flex flex-col gap-3 md:flex-1 md:max-w-100">
-
+        {!state.succeeded && !state.submitting && 
+        <>
         <p className="text-sm md:hidden">O déjanos tu información y nos contactaremos contigo.</p>
 
         <form 
         onSubmit={handleSubmit}
-        className="bg-(--green) text-(--white) rounded-md flex flex-col p-5 gap-1 md:p-10">
-          <label htmlFor="full-name" className="font-medium">Nombre</label>
-          <input type="text" name="full-name" id="full-name" placeholder="Ej: Juan Pérez" className="border-b-2 border-(--white) focus:outline-none pl-2 font-light focus:"/>
+        className="bg-(--green) text-(--white) rounded-md flex flex-col p-5 gap-1 md:p-10 h-120">
+          <label htmlFor="full-name" className="font-medium">Nombre*</label>
+          <input required type="text" name="full-name" id="full-name" placeholder="Ej: Juan Pérez" className="border-b-2 border-(--white) focus:outline-none pl-2 font-light focus:"/>
           <ValidationError field="name" prefix="Name" errors={state.errors}/>
-          <label htmlFor="client-email" className="font-medium mt-2">Email</label>
-          <input type="email" name="client-email" id="client-email" placeholder="tu-correo@gmail.com" className="border-b-2 border-(--white) focus:outline-none pl-2 font-light"/>
+          <label htmlFor="client-email" className="font-medium mt-2">Email*</label>
+          <input required type="email" name="client-email" id="client-email" placeholder="tu-correo@gmail.com" className="border-b-2 border-(--white) focus:outline-none pl-2 font-light"/>
           <ValidationError field="email" prefix="Email" errors={state.errors}/>
-          <label htmlFor="subject" className="font-medium mt-2">Título</label>
-          <input type="text" name="subject" id="subject" placeholder="Solicitud de cotización" className="border-b-2 border-(--white) focus:outline-none pl-2 font-light"/>
+          <label htmlFor="subject" className="font-medium mt-2">Título*</label>
+          <input required type="text" name="subject" id="subject" placeholder="Solicitud de cotización" className="border-b-2 border-(--white) focus:outline-none pl-2 font-light"/>
           <ValidationError field="subject" prefix="Subject" errors={state.errors}/>
           <label htmlFor="message" className="font-medium mt-2 mb-1">Mensaje</label>
           <textarea
-            id="content"
-            name="content"
+            id="message"
+            name="message"
             rows={5}
             className="resize-none border-2 border-(--white) rounded-sm p-2 w-full  focus:outline-none"
             placeholder="Escribe tu mensaje aquí"
@@ -55,6 +64,26 @@ export default function ContactModal({
           <button type="submit" disabled={state.submitting} className="bg-(--orange) w-fit text-white px-4 py-2 rounded-md mt-5 
             cursor-pointer transition-[scale] duration-200 hover:scale-105 self-center font-medium">Enviar</button>
         </form>
+        </>
+        }
+        {state.submitting &&
+        <div className="bg-(--green) text-(--white) rounded-md flex flex-col p-5 gap-1 md:p-10 h-130 items-center justify-center">
+          <Spinner size="lg" variant="dots"/>
+        </div> 
+        }
+        {state.succeeded &&
+          <div className="bg-(--green) text-(--white) rounded-md flex flex-col p-5 gap-5 md:px-10 md:py-15 h-130 items-center ">
+            <h3 className="text-lg md:text-xl text-center font-bold">El formulario enviado correctamente!</h3>
+            <Image 
+            src="/icons/done_white.svg"
+            alt="Contact Info"
+            width={24}
+            height={24}
+            className="h-20 w-auto"
+          />
+            <p className="text-sm md:text-base text-center font-extralight">Gracias por escribirnos. Hemos recibido tus datos correctamente y nos pondremos en contacto contigo muy pronto.</p>
+          </div> 
+        }
       </div>
       </div>
     </section>
