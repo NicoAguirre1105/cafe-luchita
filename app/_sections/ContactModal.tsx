@@ -45,6 +45,8 @@ export default function ContactModal({
           <ValidationError field="subject" prefix="Subject" errors={state.errors}/>
           <label htmlFor="message" className="font-medium mt-2 mb-1">Mensaje</label>
           <textarea
+            id="content"
+            name="content"
             rows={5}
             className="resize-none border-2 border-(--white) rounded-sm p-2 w-full  focus:outline-none"
             placeholder="Escribe tu mensaje aquí"
