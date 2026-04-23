@@ -7,7 +7,7 @@ export default function Slide({
 }){
 
   return (
-    <article className={`${className} h-dvh w-full flex flex-col`}>
+    <article className={`${className} h-dvh min-h-120 w-full flex flex-col`}>
       {children}
     </article>
   )

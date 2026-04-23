@@ -12,7 +12,7 @@ export default function Product() {
         alt="Cafe en grano"
         width={6000}
         height={4000}
-        className="absolute min-h-dvh object-cover -z-1 opacity-50"
+        className="absolute h-dvh min-h-120 object-cover -z-1 opacity-50"
       />
       <Slide className="text-(--cream) gap-15 px-5 py-20 items-center">
         <div className="flex flex-col w-full max-w-250 gap-10 md:px-20 md:py-30">

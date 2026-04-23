@@ -20,12 +20,12 @@ export default function Hero({
         alt="Cafe Luchita"
         width={6000}
         height={4000}
-        className="absolute h-dvh object-cover -z-1 opacity-50"
+        className="absolute h-dvh min-h-150 object-cover -z-1 opacity-50"
       />
     <section 
       className="
         relative flex flex-col justify-center
-        min-h-dvh w-full p-6 gap-3 text-(--cream) items-end md:py-10 md:px-20
+        h-dvh min-h-150 w-full p-6 gap-3 text-(--cream) items-end md:py-10 md:px-20
       "
       id="Inicio"
     >
