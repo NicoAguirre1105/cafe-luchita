@@ -45,10 +45,10 @@ export default function ContactModal({
         className="bg-(--green) text-(--white) rounded-md flex flex-col p-5 gap-1 md:p-10 h-120">
           <label htmlFor="full-name" className="font-medium">Nombre*</label>
           <input required type="text" name="full-name" id="full-name" placeholder="Ej: Juan Pérez" className="border-b-2 border-(--white) focus:outline-none pl-2 font-light focus:"/>
-          <ValidationError field="name" prefix="Name" errors={state.errors}/>
-          <label htmlFor="client-email" className="font-medium mt-2">Email*</label>
-          <input required type="email" name="client-email" id="client-email" placeholder="tu-correo@gmail.com" className="border-b-2 border-(--white) focus:outline-none pl-2 font-light"/>
-          <ValidationError field="email" prefix="Email" errors={state.errors}/>
+          <ValidationError field="full-name" prefix="full-name" errors={state.errors}/>
+          <label htmlFor="client-phone" className="font-medium mt-2">Número de contacto*</label>
+          <input required type="tel" name="client-phone" id="client-phone" placeholder="0987654210" className="border-b-2 border-(--white) focus:outline-none pl-2 font-light"/>
+          <ValidationError field="client-phone" prefix="client-phone" errors={state.errors}/>
           <label htmlFor="subject" className="font-medium mt-2">Título*</label>
           <input required type="text" name="subject" id="subject" placeholder="Solicitud de cotización" className="border-b-2 border-(--white) focus:outline-none pl-2 font-light"/>
           <ValidationError field="subject" prefix="Subject" errors={state.errors}/>
