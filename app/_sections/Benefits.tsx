@@ -1,0 +1,189 @@
+'use client'
+
+import { useState } from "react"
+import Section, { Container } from "../_components/Section"
+import SectionHeader from "../_components/SectionHeader"
+import Reveal from "../_components/Reveal"
+
+// ── SVG icon primitives ──────────────────────────────────────────────────────
+const Icon = ({ children }: { children: React.ReactNode }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
+    strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 flex-none mt-0.5">
+    {children}
+  </svg>
+)
+
+const icons = {
+  bolt:     <Icon><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></Icon>,
+  runner:   <Icon><circle cx="13" cy="4" r="2" /><path d="M7 21l3.5-8L13 16l3-8 2 4h2" /><path d="M5 13l4-3 4 1" /></Icon>,
+  cycle:    <Icon><polyline points="1 4 1 10 7 10" /><polyline points="23 20 23 14 17 14" /><path d="M20.5 9A9 9 0 005.6 5.6L1 10M23 14l-4.6 4.4A9 9 0 013.5 15" /></Icon>,
+  stomach:  <Icon><path d="M8 8a4 4 0 018 0c0 3-1.5 5-1.5 8h-5C9.5 13 8 11 8 8z" /><path d="M10 16h4" /><path d="M10.5 11c.5 1 3 1 3 0" /></Icon>,
+  brain:    <Icon><path d="M9.5 2a2.5 2.5 0 014.5 2A2.5 2.5 0 0118 6.5a2.5 2.5 0 01-2 4.5v1A2.5 2.5 0 0113.5 16h-3A2.5 2.5 0 018 13.5v-1A2.5 2.5 0 016 8a2.5 2.5 0 013.5-6z" /></Icon>,
+  scale:    <Icon><line x1="12" y1="3" x2="12" y2="21" /><path d="M5 6l7-3 7 3" /><path d="M3 10l4 8H3m14-8l4 8h-8" /><line x1="3" y1="18" x2="21" y2="18" /></Icon>,
+  lightbulb:<Icon><path d="M9 18h6M10 22h4M12 2a7 7 0 017 7c0 2.9-1.7 5.4-4 6.7V18H9v-2.3A7 7 0 0112 2z" /></Icon>,
+  smile:    <Icon><circle cx="12" cy="12" r="10" /><path d="M8 14s1.5 2 4 2 4-2 4-2" /><line x1="9" y1="9" x2="9.01" y2="9" /><line x1="15" y1="9" x2="15.01" y2="9" /></Icon>,
+  sunrise:  <Icon><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" /><path d="M4 20h16" /></Icon>,
+  shuffle:  <Icon><polyline points="16 3 21 3 21 8" /><line x1="4" y1="20" x2="21" y2="3" /><polyline points="21 16 21 21 16 21" /><line x1="15" y1="15" x2="21" y2="21" /><line x1="4" y1="4" x2="9" y2="9" /></Icon>,
+  dna:      <Icon><path d="M2 4c6.667 8 13.333 8 20 0M2 20c6.667-8 13.333-8 20 0M2 12h20" /><circle cx="7" cy="8" r="1" fill="currentColor" stroke="none" /><circle cx="17" cy="16" r="1" fill="currentColor" stroke="none" /></Icon>,
+  users:    <Icon><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" /></Icon>,
+}
+
+const reasons = [
+  {
+    title: "El sabor del origen, intacto",
+    description:
+      "El tueste medio es el único punto donde el grano todavía habla. Sientes Loja en la taza: dulce, redondo, con ese caramelo suave que no necesita azúcar.",
+  },
+  {
+    title: "Bien por dentro, rico por fuera",
+    description:
+      "Antioxidantes, cafeína equilibrada y una acidez amigable que no le cae mal al estómago. El café que te hace bien sin pedirte que sacrifiques nada.",
+  },
+  {
+    title: "Para toda la familia",
+    description:
+      "Ni demasiado fuerte, ni demasiado suave. El tueste que le gusta al abuelo, a tu pareja y al vecino que siempre aparece a la hora del café.",
+  },
+]
+
+type ProfileKey = "deportistas" | "empresarios" | "casa"
+
+const profiles: Record<
+  ProfileKey,
+  { label: string; subtitle: string; points: { icon: React.ReactNode; title: string; desc: string }[]; tip: string }
+> = {
+  deportistas: {
+    label: "Deportistas",
+    subtitle: "Pre y post entrenamiento",
+    points: [
+      { icon: icons.bolt,    title: "Rendimiento medible",       desc: "La EFSA confirma que 3–6 mg/kg de cafeína mejoran resistencia y fuerza muscular sin sobreestimulación." },
+      { icon: icons.runner,  title: "Retrasa la fatiga",         desc: "Bloquea los receptores de adenosina y permite entrenamientos más intensos con la misma percepción de esfuerzo." },
+      { icon: icons.cycle,   title: "Recuperación más rápida",   desc: "Tomado con carbohidratos post-ejercicio acelera la reposición de glucógeno muscular." },
+      { icon: icons.stomach, title: "Amigable al estómago",      desc: "Acidez moderada que no provoca molestias gástricas en ayunas antes de entrenar." },
+    ],
+    tip: "30–45 min antes del entrenamiento, cuando la cafeína alcanza su pico máximo en sangre.",
+  },
+  empresarios: {
+    label: "Empresarios",
+    subtitle: "Rendimiento cognitivo",
+    points: [
+      { icon: icons.brain,     title: "Concentración sostenida",      desc: "Mejora la memoria de trabajo y la atención en tareas complejas. Ideal para jornadas largas." },
+      { icon: icons.scale,     title: "Mejor toma de decisiones",     desc: "Contrarresta la fatiga de decisión que se acumula en reuniones y negociaciones." },
+      { icon: icons.lightbulb, title: "Creatividad e innovación",     desc: "Investigación del MIT vincula el café moderado con mayor pensamiento lateral." },
+      { icon: icons.smile,     title: "Bienestar emocional",          desc: "Estimula dopamina y serotonina, mejorando el ánimo en entornos de alta presión." },
+    ],
+    tip: "1–2 tazas en la mañana y una tercera a media jornada maximizan la productividad sin afectar el sueño.",
+  },
+  casa: {
+    label: "En casa",
+    subtitle: "Ritual y bienestar diario",
+    points: [
+      { icon: icons.sunrise, title: "Ritual de bienestar",        desc: "El acto de preparar café activa la atención plena. Un ancla emocional para iniciar el día." },
+      { icon: icons.shuffle, title: "Versatilidad doméstica",     desc: "Funciona en moka, prensa francesa, filtro o AeroPress. No necesita máquina profesional." },
+      { icon: icons.dna,     title: "Doble perfil antioxidante",  desc: "Ácidos clorogénicos y melanoidinas — protección celular respaldada por Harvard y Johns Hopkins." },
+      { icon: icons.users,   title: "Para toda la familia",       desc: "Perfil accesible, sin la barrera del sabor ácido o amargo extremo." },
+    ],
+    tip: "Guárdalo en recipiente hermético, lejos de la luz. Consúmelo en 3–4 semanas tras el tueste.",
+  },
+}
+
+export default function Benefits() {
+  const [active, setActive] = useState<ProfileKey>("empresarios")
+  const data = profiles[active]
+
+  return (
+    <Section tone="cream" id="Beneficios">
+      <Container>
+        <Reveal>
+          <SectionHeader
+            eyebrow="Beneficios"
+            accentColor="var(--green)"
+            title={
+              <>
+                Por qué el{" "}
+                <em className="not-italic italic text-(--green) font-semibold">tueste medio</em>.
+              </>
+            }
+            description="Hay café que se produce. Y hay café que se cuida. El nuestro viene de fincas lojanas donde cada grano pasa por manos que llevan años aprendiendo qué hace grande a un café."
+          />
+        </Reveal>
+
+        {/* Tres razones */}
+        <ul className="mt-16 grid gap-6 md:grid-cols-3 md:gap-8">
+          {reasons.map((r, i) => (
+            <Reveal as="li" key={r.title} delay={i * 100}>
+              <article className="h-full rounded-3xl border border-(--sand) bg-(--milk) p-7">
+                <span className="font-(family-name:--font-display) text-4xl text-(--orange)">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-4 font-(family-name:--font-display) text-xl md:text-2xl text-(--coffee)">
+                  {r.title}
+                </h3>
+                <p className="mt-3 text-sm md:text-base text-(--coffee)/75 leading-relaxed">
+                  {r.description}
+                </p>
+              </article>
+            </Reveal>
+          ))}
+        </ul>
+
+        {/* Perfiles intercambiables */}
+        <div className="mt-24">
+          <Reveal>
+            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+              <div>
+                <span className="text-xs uppercase tracking-[0.25em] font-semibold text-(--green)">
+                  Para quién
+                </span>
+                <h3 className="mt-2 font-(family-name:--font-display) text-2xl md:text-3xl text-(--coffee) max-w-lg">
+                  Un mismo café que se acomoda a tu día.
+                </h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {(Object.keys(profiles) as ProfileKey[]).map((key) => (
+                  <button
+                    key={key}
+                    type="button"
+                    onClick={() => setActive(key)}
+                    className={`rounded-full px-5 py-2 text-sm font-medium transition-all duration-300 cursor-pointer ${
+                      active === key
+                        ? "bg-(--green) text-(--cream)"
+                        : "bg-(--milk) text-(--coffee) border border-(--sand) hover:border-(--green)/50"
+                    }`}
+                  >
+                    {profiles[key].label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={100}>
+            <div className="mt-10 rounded-3xl border border-(--sand) bg-(--milk) p-7 md:p-10">
+              <p className="text-sm font-semibold uppercase tracking-widest text-(--orange)">
+                {data.subtitle}
+              </p>
+              <ul className="mt-8 grid gap-6 md:grid-cols-2">
+                {data.points.map((p) => (
+                  <li key={p.title} className="flex gap-4 text-(--green)">
+                    {p.icon}
+                    <div>
+                      <h4 className="font-(family-name:--font-display) text-lg text-(--coffee)">
+                        {p.title}
+                      </h4>
+                      <p className="mt-1 text-sm text-(--coffee)/75 leading-relaxed">{p.desc}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-8 rounded-2xl bg-(--green) px-5 py-4 text-(--cream)">
+                <p className="text-xs uppercase tracking-widest font-semibold text-(--orange)">Consejo</p>
+                <p className="mt-1 text-sm md:text-base leading-relaxed">{data.tip}</p>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </Container>
+    </Section>
+  )
+}

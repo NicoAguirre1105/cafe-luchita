@@ -1,91 +1,155 @@
 'use client'
 
+import { useEffect } from "react"
 import { useForm, ValidationError } from "@formspree/react"
+import Image from "next/image"
 import InfoModal from "../_components/InfoModal"
 import { Spinner } from "../_components/Spinner"
-import Image from "next/image"
+import { Button } from "../_components/Button"
+import BeanIcon from "../_components/BeanIcon"
+
+const inputClass =
+  "rounded-xl border border-(--cream)/30 bg-(--green-dark)/40 px-3 py-2.5 text-sm text-(--cream) placeholder:text-(--cream)/50 focus:outline-none focus:border-(--orange) transition-colors"
 
 export default function ContactModal({
-  isContactModalOpen
-}:{
+  isContactModalOpen,
+}: {
   isContactModalOpen: boolean
-}){
-
+}) {
   const [state, handleSubmit, reset] = useForm("mrerpaww")
 
-  if (state.succeeded) {
-    setTimeout(() => {
-      reset()
-    }, 4000);
-  }
+  useEffect(() => {
+    if (state.succeeded) {
+      const t = setTimeout(() => reset(), 4000)
+      return () => clearTimeout(t)
+    }
+  }, [state.succeeded, reset])
 
   return (
-    <section className={`fixed h-full bg-(--cream) w-full z-45 border-b-3 border-x-3 border-(--green) text-(--green) overflow-y-auto
-      flex flex-col gap-5 md:flex-row
-      transition-all duration-300 ease-in-out  justify-center
-      ${isContactModalOpen ? "left-0" : "left-full"}`}>
-      <div className="flex flex-col w-full max-w-280 h-full px-5 pb-10 pt-30 md:pt-40 md:pb-30 md:px-20 md:flex-row gap-5">
-      <div className="flex flex-col gap-3 md:flex-1 ">
-        <h2 className="font-bold text-2xl md:text-3xl">Comunícate con nosotros</h2>
-        <p className="text-sm md:text-base md:max-w-150">Puedes contactarnos mediante los siguientes canales. Nuestro equipo de ventas responderá lo más pronto posible.</p>
-        <address className="not-italic flex flex-col gap-5 w-full">
-          <h3 className="text-xl font-semibold md:text-2xl">Redes sociales</h3>
-          <InfoModal href="https://www.facebook.com/profile.php?id=61565592500491&locale=es_LA" iconsrc="/icons/facebook_logo.svg" title="Facebook" info="Café Luchita"/>
-          <InfoModal href="https://www.instagram.com/cafe_luchita/" iconsrc="/icons/instagram_logo.svg" title="Instagram" info="@cafe_luchita"/>
-          <InfoModal href="https://api.whatsapp.com/send?phone=593984634581" iconsrc="/icons/whatsapp_logo.svg" title="WhatsApp" info="(+593) 984 634 581"/>
-        </address>
-      </div>
-      <div className="flex flex-col gap-3 md:flex-1 md:max-w-100">
-        {!state.succeeded && !state.submitting && 
-        <>
-        <p className="text-sm md:hidden">O déjanos tu información y nos contactaremos contigo.</p>
+    <aside
+      aria-hidden={!isContactModalOpen}
+      className={`fixed inset-0 z-40 overflow-y-auto bean-pattern transition-transform duration-500 ease-out ${
+        isContactModalOpen ? "translate-x-0" : "translate-x-full"
+      }`}
+    >
+      <div className="min-h-dvh w-full px-5 pt-24 pb-16 md:px-10 md:pt-32 md:pb-20">
+        <div className="mx-auto grid w-full max-w-6xl gap-12 md:grid-cols-[1fr_1.1fr] md:gap-16">
+          {/* Info */}
+          <div className="flex flex-col gap-6">
+            <span className="inline-flex w-fit items-center gap-2 text-xs uppercase tracking-[0.25em] font-semibold text-(--green)">
+              <BeanIcon size={12} />
+              Contacto
+            </span>
+            <h2 className="font-(family-name:--font-display) text-3xl md:text-5xl leading-[1.05] font-medium text-(--coffee)">
+              Cuéntanos qué{" "}
+              <em className="not-italic italic text-(--green) font-semibold">necesitas</em>.
+            </h2>
+            <p className="text-base md:text-lg leading-relaxed text-(--coffee)/75 max-w-md">
+              Respondemos personalmente. Escríbenos por el canal que prefieras o déjanos
+              tu información y te contactamos.
+            </p>
 
-        <form 
-        onSubmit={handleSubmit}
-        className="bg-(--green) text-(--white) rounded-md flex flex-col p-5 gap-1 md:p-10 h-120">
-          <label htmlFor="full-name" className="font-medium">Nombre*</label>
-          <input required type="text" name="full-name" id="full-name" placeholder="Ej: Juan Pérez" className="border-b-2 border-(--white) focus:outline-none pl-2 font-light focus:"/>
-          <ValidationError field="full-name" prefix="full-name" errors={state.errors}/>
-          <label htmlFor="client-phone" className="font-medium mt-2">Número de contacto*</label>
-          <input required type="tel" name="client-phone" id="client-phone" placeholder="0987654210" className="border-b-2 border-(--white) focus:outline-none pl-2 font-light"/>
-          <ValidationError field="client-phone" prefix="client-phone" errors={state.errors}/>
-          <label htmlFor="subject" className="font-medium mt-2">Título*</label>
-          <input required type="text" name="subject" id="subject" placeholder="Solicitud de cotización" className="border-b-2 border-(--white) focus:outline-none pl-2 font-light"/>
-          <ValidationError field="subject" prefix="Subject" errors={state.errors}/>
-          <label htmlFor="message" className="font-medium mt-2 mb-1">Mensaje</label>
-          <textarea
-            id="message"
-            name="message"
-            rows={5}
-            className="resize-none border-2 border-(--white) rounded-sm p-2 w-full  focus:outline-none"
-            placeholder="Escribe tu mensaje aquí"
-            ></textarea>
-          <ValidationError field="message" prefix="Message" errors={state.errors}/>
-          <button type="submit" disabled={state.submitting} className="bg-(--orange) w-fit text-white px-4 py-2 rounded-md mt-5 
-            cursor-pointer transition-[scale] duration-200 hover:scale-105 self-center font-medium">Enviar</button>
-        </form>
-        </>
-        }
-        {state.submitting &&
-        <div className="bg-(--green) text-(--white) rounded-md flex flex-col p-5 gap-1 md:p-10 h-130 items-center justify-center">
-          <Spinner size="lg" variant="dots"/>
-        </div> 
-        }
-        {state.succeeded &&
-          <div className="bg-(--green) text-(--white) rounded-md flex flex-col px-5 py-15 gap-5 md:px-10 md:py-15 h-130 items-center ">
-            <h3 className="text-lg md:text-xl text-center font-bold">El formulario enviado correctamente!</h3>
-            <Image 
-            src="/icons/done_white.svg"
-            alt="Contact Info"
-            width={24}
-            height={24}
-            className="h-20 w-auto"
-          />
-            <p className="text-sm md:text-base text-center font-extralight">Gracias por escribirnos. Hemos recibido tus datos correctamente y nos pondremos en contacto contigo muy pronto.</p>
-          </div> 
-        }
+            <address className="not-italic mt-2 flex flex-col gap-3">
+              <h3 className="text-xs uppercase tracking-widest font-semibold text-(--bark)/70">
+                Redes y canales
+              </h3>
+              <InfoModal
+                href="https://api.whatsapp.com/send?phone=593984634581"
+                iconsrc="/icons/whatsapp_logo.svg"
+                title="WhatsApp"
+                info="(+593) 984 634 581"
+              />
+              <InfoModal
+                href="https://www.instagram.com/cafe_luchita/"
+                iconsrc="/icons/instagram_logo.svg"
+                title="Instagram"
+                info="@cafe_luchita"
+              />
+              <InfoModal
+                href="https://www.facebook.com/profile.php?id=61565592500491&locale=es_LA"
+                iconsrc="/icons/facebook_logo.svg"
+                title="Facebook"
+                info="Café Luchita"
+              />
+            </address>
+          </div>
+
+          {/* Form */}
+          <div className="md:sticky md:top-32 md:self-start">
+            {!state.succeeded && !state.submitting && (
+              <form
+                onSubmit={handleSubmit}
+                className="flex flex-col gap-4 rounded-3xl bg-(--green) p-6 md:p-10 text-(--cream) border border-(--green-dark)"
+              >
+                <h3 className="font-(family-name:--font-display) text-xl md:text-2xl">
+                  O escríbenos por aquí
+                </h3>
+
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor="full-name" className="text-sm font-medium">Nombre*</label>
+                  <input required type="text" id="full-name" name="full-name" placeholder="Ej: Juan Pérez" className={inputClass} />
+                  <ValidationError field="full-name" prefix="full-name" errors={state.errors} />
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor="client-phone" className="text-sm font-medium">Número de contacto*</label>
+                  <input required type="tel" id="client-phone" name="client-phone" placeholder="0987654321" className={inputClass} />
+                  <ValidationError field="client-phone" prefix="client-phone" errors={state.errors} />
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor="subject" className="text-sm font-medium">Asunto*</label>
+                  <input required type="text" id="subject" name="subject" placeholder="Solicitud de cotización" className={inputClass} />
+                  <ValidationError field="subject" prefix="Subject" errors={state.errors} />
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor="message" className="text-sm font-medium">Mensaje</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={4}
+                    placeholder="Cuéntanos qué necesitas..."
+                    className={`${inputClass} resize-none`}
+                  />
+                  <ValidationError field="message" prefix="Message" errors={state.errors} />
+                </div>
+
+                <Button type="submit" variant="primary" size="lg" disabled={state.submitting} className="mt-2 self-start">
+                  Enviar mensaje
+                </Button>
+              </form>
+            )}
+
+            {state.submitting && (
+              <div className="flex h-80 flex-col items-center justify-center gap-4 rounded-3xl bg-(--green) text-(--cream) p-10">
+                <BeanIcon size={48} className="text-(--orange) animate-float" />
+                <Spinner size="lg" variant="dots" />
+                <p className="text-sm opacity-80">Enviando tu mensaje...</p>
+              </div>
+            )}
+
+            {state.succeeded && (
+              <div className="flex flex-col items-center justify-center gap-5 rounded-3xl bg-(--green) text-(--cream) p-10 text-center">
+                <Image
+                  src="/icons/done_white.svg"
+                  alt=""
+                  width={48}
+                  height={48}
+                  className="h-12 w-auto"
+                />
+                <h3 className="font-(family-name:--font-display) text-2xl">
+                  ¡Mensaje enviado!
+                </h3>
+                <p className="text-sm md:text-base opacity-85 max-w-sm">
+                  Gracias por escribirnos. Recibimos tus datos y nos pondremos en
+                  contacto contigo muy pronto.
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
-      </div>
-    </section>
+    </aside>
   )
 }

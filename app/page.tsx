@@ -1,34 +1,41 @@
 'use client'
 
+import { useState } from "react"
 import Header from "./_sections/Header"
 import ContactModal from "./_sections/ContactModal"
 import Hero from "./_sections/Hero"
-import Properties from "./_sections/Properties"
-import Product from "./_sections/Product"
+import HowItWorks from "./_sections/HowItWorks"
+import Presentations from "./_sections/Presentations"
+import OfficeCTA from "./_sections/OfficeCTA"
+import OurCoffee from "./_sections/OurCoffee"
+import CoffeeProcess from "./_sections/CoffeeProcess"
+import Benefits from "./_sections/Benefits"
+import Delivery from "./_sections/Delivery"
+import Testimonials from "./_sections/Testimonials"
 import AboutUs from "./_sections/AboutUs"
-import CTA from "./_sections/CTA"
+import FinalCTA from "./_sections/FinalCTA"
 import Footer from "./_sections/Footer"
 
-import { useState } from "react"
-
 export default function Home() {
-
   const [isContactModalOpen, setIsContactModalOpen] = useState(false)
-
-  const handleContactModal = () => {
-    setIsContactModalOpen(!isContactModalOpen)
-  }
+  const handleContactModal = () => setIsContactModalOpen((v) => !v)
 
   return (
     <>
-      <Header isContactModalOpen={isContactModalOpen} handleContactModal={handleContactModal}/>
-      <ContactModal isContactModalOpen={isContactModalOpen}/>
+      <Header isContactModalOpen={isContactModalOpen} handleContactModal={handleContactModal} />
+      <ContactModal isContactModalOpen={isContactModalOpen} />
       <main>
-        <Hero handleContactModal={handleContactModal}/>
-        <Properties />
-        <Product />
+        <Hero handleContactModal={handleContactModal} />
+        <HowItWorks />
+        <Presentations handleContactModal={handleContactModal} />
+        <OfficeCTA />
+        <OurCoffee />
+        <CoffeeProcess />
+        <Benefits />
+        <Delivery />
+        <Testimonials />
         <AboutUs />
-        <CTA handleContactModal={handleContactModal}/>
+        <FinalCTA handleContactModal={handleContactModal} />
       </main>
       <Footer />
     </>

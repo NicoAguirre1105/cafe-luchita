@@ -1,48 +1,102 @@
-import { Cairo_Play } from "next/font/google";
-import Image from "next/image";
+'use client'
 
-const cairoPlay = Cairo_Play({
-  variable: "--font-cairo-play",
-  subsets: ["latin"],
-});
+import Image from "next/image"
+import { Button, ButtonLink } from "../_components/Button"
+import BeanIcon from "../_components/BeanIcon"
 
-export default function Hero({
-  handleContactModal
-}:{
-  handleContactModal: () => void
-}
-) {
-
-  return(
-    <>
-    <Image 
-        src="/img/landing-bg-mobile.jpeg"
-        alt="Cafe Luchita"
-        width={6000}
-        height={4000}
-        className="absolute h-dvh min-h-150 object-cover -z-1 opacity-50"
-      />
-    <section 
-      className="
-        relative flex flex-col justify-center
-        h-dvh min-h-150 w-full p-6 gap-3 text-(--cream) items-end md:py-10 md:px-20
-      "
+export default function Hero({ handleContactModal }: { handleContactModal: () => void }) {
+  return (
+    <section
       id="Inicio"
+      className="relative w-full min-h-dvh overflow-hidden bg-(--espresso) flex items-end pb-16 md:items-center md:pb-0"
     >
-      <div className="absolute inset-0 bg-black opacity-40"></div>
-      <h1 className={`${cairoPlay.className} text-4xl font-bold text-(--cream) z-10 text-right max-w-200 sm:text-5xl`}>
-        Lo mejor de nuestra tierra, molido para tu hogar
-      </h1>
-      <p className="z-10 text-right text-sm mt-5 max-w-120 sm:text-base md:text-lg">
-        Disfruta de un café con identidad. Grano cultivado artesanalmente para llevar el orgullo de nuestra tierra directo a tu mesa.
-      </p>
-      <button 
-      className="z-10 bg-(--orange) text-white px-4 py-2 rounded-md mt-8 
-      cursor-pointer transition-[scale] duration-200 hover:scale-105 self-center sm:mt-20 md:text-lg md:font-medium md:px-6 md:py-3"
-      onClick={handleContactModal}>
-        Hacer un pedido
-      </button>
+      <Image
+        src="/img/landing-bg.jpeg"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-center opacity-35"
+      />
+      <div className="absolute inset-0 bg-(--espresso)/40" />
+
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-6 md:px-10 pt-28 md:pt-0 flex flex-col gap-6 md:gap-8">
+
+        {/* Eyebrow */}
+        <div className="animate-fade-up flex items-center gap-3">
+          <BeanIcon size={16} className="text-(--orange) flex-none" />
+          <span className="text-xs uppercase tracking-[0.25em] font-semibold text-(--cream)/70">
+            Cararango, Loja · desde 1958
+          </span>
+        </div>
+
+        {/* Headline */}
+        <h1
+          className="animate-fade-up font-(family-name:--font-display) text-(--cream) font-bold leading-[1] max-w-3xl"
+          style={{ animationDelay: "0.08s", fontSize: "clamp(2.8rem, 7vw, 6.5rem)" }}
+        >
+          El sabor de{" "}
+          <em className="not-italic text-(--orange) font-semibold">nuestra</em>{" "}
+          tierra, en tu taza.
+        </h1>
+
+        {/* Descripción (izq) + Stats (der) */}
+        <div
+          className="animate-fade-up flex flex-col gap-6 md:flex-row md:items-start md:justify-between md:gap-16"
+          style={{ animationDelay: "0.18s" }}
+        >
+          <p className="max-w-md text-sm md:text-base leading-relaxed text-(--cream)/75">
+            Café arábigo cultivado a más de 1.700 m.s.n.m., tostado al punto justo
+            y enviado a todo el Ecuador.
+          </p>
+
+          <div className="border-t border-(--cream)/15 pt-5 grid grid-cols-3 gap-4 shrink-0 min-w-[260px]">
+            <Stat value="1.700 m" label="Altitud" />
+            <Stat value="Arábigo" label="Variedad" />
+            <Stat value="Tueste medio" label="Perfil" />
+          </div>
+        </div>
+
+        {/* CTAs */}
+        <div
+          className="animate-fade-up flex flex-wrap gap-3"
+          style={{ animationDelay: "0.3s" }}
+        >
+          <Button variant="orange" size="lg" onClick={handleContactModal}>
+            Hacer un pedido
+          </Button>
+          <ButtonLink
+            href="#Presentaciones"
+            variant="ghost"
+            size="lg"
+            className="text-(--cream)/80 hover:text-(--cream)"
+          >
+            Ver presentaciones →
+          </ButtonLink>
+        </div>
+      </div>
+
+      {/* Scroll indicator — arrow */}
+      <div
+        className="hidden md:flex absolute bottom-8 right-10 flex-col items-center gap-2 text-(--cream)/40 animate-fade-in"
+        style={{ animationDelay: "1s" }}
+      >
+        <span className="text-[10px] uppercase tracking-[0.3em]"
+          style={{ writingMode: "vertical-rl" }}>scroll</span>
+        <svg width="16" height="24" viewBox="0 0 16 24" fill="none" className="mt-1">
+          <line x1="8" y1="0" x2="8" y2="18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+          <polyline points="3,13 8,19 13,13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+        </svg>
+      </div>
     </section>
-    </>
+  )
+}
+
+function Stat({ value, label }: { value: string; label: string }) {
+  return (
+    <div>
+      <p className="font-(family-name:--font-display) text-base md:text-lg text-(--cream) font-semibold">{value}</p>
+      <p className="text-[10px] md:text-xs text-(--cream)/55 uppercase tracking-wider mt-0.5">{label}</p>
+    </div>
   )
 }

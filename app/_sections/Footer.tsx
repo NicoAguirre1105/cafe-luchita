@@ -1,50 +1,84 @@
 'use client'
+
 import Image from "next/image"
 import Link from "next/link"
 
-export default function Footer() {
+const socials = [
+  { href: "https://www.facebook.com/profile.php?id=61565592500491&locale=es_LA", icon: "/icons/facebook_logo.svg", label: "Facebook" },
+  { href: "https://www.instagram.com/cafe_luchita/", icon: "/icons/instagram_logo.svg", label: "Instagram" },
+  { href: "https://api.whatsapp.com/send?phone=593984634581", icon: "/icons/whatsapp_logo.svg", label: "WhatsApp" },
+]
 
+const nav = [
+  { href: "#Inicio",          label: "Inicio" },
+  { href: "#ComoFunciona",    label: "Cómo funciona" },
+  { href: "#Presentaciones",  label: "Producto" },
+  { href: "#NuestroCafe",     label: "Nuestro café" },
+  { href: "#Beneficios",      label: "Beneficios" },
+  { href: "#SobreNosotros",   label: "Nosotros" },
+]
+
+export default function Footer() {
   return (
-    <footer className="text-(--white) flex px-5 py-10 items-center text-xs gap-1 justify-between md:px-40 md:text-sm">
-      <Image 
-        src="/logos/logo_large_black.jpeg"
-        alt="Logo Cafe Luchita"
-        width={100}
-        height={100}
-        className="h-30 w-auto md:h-40"
-      />
-      <div className="text-center">
-        <p>Siguenos en nuestras redes sociales:</p>
-        <div className="flex w-full justify-center gap-1 my-2">
-          <Link href="https://www.facebook.com/profile.php?id=61565592500491&locale=es_LA" target="_blank">
-          <Image 
-            src="/icons/facebook_logo.svg"
-            alt="Logo Cafe Luchita"
-            width={24}
-            height={24}
-            className="h-6 w-auto md:h-10 transition-[scale] hover:scale-110 duration-200 ease-in-out"
-          />  
-          </Link>
-          <Link href="https://api.whatsapp.com/send?phone=593984634581" target="_blank">
-          <Image 
-            src="/icons/whatsapp_logo.svg"
-            alt="Logo Cafe Luchita"
-            width={24}
-            height={24}
-            className="h-6 w-auto md:h-10 transition-[scale] hover:scale-110 duration-200 ease-in-out"
-           />  
-          </Link>
-          <Link href="https://www.instagram.com/cafe_luchita/" target="_blank">
-          <Image 
-            src="/icons/instagram_logo.svg"
-            alt="Logo Cafe Luchita"
-            width={24}
-            height={24}
-            className="h-6 w-auto md:h-10 transition-[scale] hover:scale-110 duration-200 ease-in-out"
-           />  
-          </Link>
+    <footer className="bg-(--espresso) text-(--cream) px-5 py-16 md:px-10 md:py-20">
+      <div className="mx-auto max-w-6xl">
+        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr] md:gap-16">
+          <div className="flex flex-col gap-5 items-start">
+            <Image
+              src="/logos/logo_cream.svg"
+              alt="Café Luchita"
+              width={48}
+              height={48}
+              className="h-12 w-auto"
+            />
+            <p className="text-sm leading-relaxed text-(--cream)/70">
+              Café lojano de origen, cultivado a más de 1.700 m.s.n.m. en Cararango. Tostado al
+              punto justo y enviado a todo el Ecuador.
+            </p>
+          </div>
+
+          <nav>
+            <h3 className="text-xs uppercase tracking-widest font-semibold text-(--orange)">
+              Navegación
+            </h3>
+            <ul className="mt-4 flex flex-col gap-2 text-sm">
+              {nav.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="hover:text-(--orange) transition-colors">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div>
+            <h3 className="text-xs uppercase tracking-widest font-semibold text-(--orange)">
+              Síguenos
+            </h3>
+            <ul className="mt-4 flex gap-3">
+              {socials.map((s) => (
+                <li key={s.href}>
+                  <Link
+                    href={s.href}
+                    target="_blank"
+                    aria-label={s.label}
+                    className="grid h-10 w-10 place-items-center rounded-full bg-(--cream)/10 hover:bg-(--orange) transition-colors"
+                  >
+                    <Image src={s.icon} alt="" width={18} height={18} className="h-5 w-auto" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-6 text-xs text-(--cream)/60">
+              Cararango · San Pedro de Vilcabamba, Loja
+            </p>
+          </div>
         </div>
-        <p>CAFÉ LUCHITA © 2026. Todos los derechos reservados.</p>
+
+        <div className="mt-12 border-t border-(--cream)/10 pt-6 text-center text-xs text-(--cream)/50">
+          <p>Café Luchita © {new Date().getFullYear()}. Todos los derechos reservados.</p>
+        </div>
       </div>
     </footer>
   )
