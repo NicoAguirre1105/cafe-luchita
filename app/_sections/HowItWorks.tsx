@@ -1,6 +1,6 @@
 'use client'
 
-import ScrollStory from "../_components/ScrollStory"
+import ScrollChapter from "../_components/ScrollChapter"
 import { Container } from "../_components/Section"
 import SectionHeader from "../_components/SectionHeader"
 
@@ -59,7 +59,7 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <ScrollStory tone="milk" id="ComoFunciona"
+    <ScrollChapter tone="milk" id="ComoFunciona"
       steps={[
         <Container key="header">
           <SectionHeader

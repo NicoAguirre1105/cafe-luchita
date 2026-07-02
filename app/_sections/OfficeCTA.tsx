@@ -1,6 +1,6 @@
 'use client'
 
-import ScrollStory from "../_components/ScrollStory"
+import ScrollChapter from "../_components/ScrollChapter"
 import { Container } from "../_components/Section"
 import { ButtonLink } from "../_components/Button"
 import BeanIcon from "../_components/BeanIcon"
@@ -16,7 +16,7 @@ const benefits = [
 
 export default function OfficeCTA() {
   return (
-    <ScrollStory tone="green-dark" prevTone="cream"
+    <ScrollChapter tone="coffee"
       steps={[
         <Container key="office">
           <div className="grid gap-12 md:grid-cols-[1.2fr_1fr] md:items-center md:gap-16">

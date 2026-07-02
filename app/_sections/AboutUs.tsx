@@ -1,7 +1,7 @@
 'use client'
 
 import Image from "next/image"
-import ScrollStory from "../_components/ScrollStory"
+import ScrollChapter from "../_components/ScrollChapter"
 import { Container } from "../_components/Section"
 
 const timeline = [
@@ -27,7 +27,7 @@ const timeline = [
 
 export default function AboutUs() {
   return (
-    <ScrollStory tone="green-dark" prevTone="milk" id="SobreNosotros"
+    <ScrollChapter tone="green-dark" id="SobreNosotros"
       steps={[
         <Container size="wide" key="intro">
           <div className="grid gap-12 md:grid-cols-[1.1fr_1fr] md:items-center md:gap-16">

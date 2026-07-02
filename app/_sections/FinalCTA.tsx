@@ -1,6 +1,6 @@
 'use client'
 
-import ScrollStory from "../_components/ScrollStory"
+import ScrollChapter from "../_components/ScrollChapter"
 import { Container } from "../_components/Section"
 import { Button } from "../_components/Button"
 import BeanIcon from "../_components/BeanIcon"
@@ -11,7 +11,7 @@ export default function FinalCTA({
   handleContactModal: () => void
 }) {
   return (
-    <ScrollStory tone="cream" prevTone="green-dark"
+    <ScrollChapter tone="sand"
       steps={[
         <Container key="cta">
           <div className="relative flex flex-col items-center text-center gap-8 max-w-3xl mx-auto">

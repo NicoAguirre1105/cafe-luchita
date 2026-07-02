@@ -1,7 +1,7 @@
 'use client'
 
 import Image from "next/image"
-import ScrollStory from "../_components/ScrollStory"
+import ScrollChapter from "../_components/ScrollChapter"
 import { Container } from "../_components/Section"
 import SectionHeader from "../_components/SectionHeader"
 import { Button } from "../_components/Button"
@@ -60,7 +60,7 @@ export default function Presentations({
   handleContactModal: () => void
 }) {
   return (
-    <ScrollStory tone="cream" prevTone="milk" id="Presentaciones"
+    <ScrollChapter tone="cream" id="Presentaciones"
       steps={[
         <Container size="wide" key="header">
           <SectionHeader

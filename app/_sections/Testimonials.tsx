@@ -1,6 +1,6 @@
 'use client'
 
-import ScrollStory from "../_components/ScrollStory"
+import ScrollChapter from "../_components/ScrollChapter"
 import { Container } from "../_components/Section"
 import SectionHeader from "../_components/SectionHeader"
 
@@ -52,7 +52,7 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <ScrollStory tone="milk" prevTone="green"
+    <ScrollChapter tone="milk"
       steps={[
         <div key="testimonials">
           <Container>

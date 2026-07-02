@@ -1,6 +1,6 @@
 'use client'
 
-import ScrollStory from "../_components/ScrollStory"
+import ScrollChapter from "../_components/ScrollChapter"
 import { Container } from "../_components/Section"
 
 const cards = [
@@ -41,7 +41,7 @@ const cards = [
 
 export default function Delivery() {
   return (
-    <ScrollStory tone="green" prevTone="cream"
+    <ScrollChapter tone="green"
       steps={[
         <Container key="delivery">
           <div className="grid gap-12 md:grid-cols-[1fr_1.5fr] md:items-center md:gap-16">

@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import ScrollStory from "../_components/ScrollStory"
+import ScrollChapter from "../_components/ScrollChapter"
 import { Container } from "../_components/Section"
 import SectionHeader from "../_components/SectionHeader"
 
@@ -63,7 +63,7 @@ export default function CoffeeProcess() {
   const step = steps[active]
 
   return (
-    <ScrollStory tone="coffee" prevTone="milk" id="Proceso"
+    <ScrollChapter tone="coffee" id="Proceso"
       steps={[
         <Container size="wide" key="header">
           <SectionHeader

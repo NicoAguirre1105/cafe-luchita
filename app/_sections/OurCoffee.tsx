@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import ScrollStory from "../_components/ScrollStory"
+import ScrollChapter from "../_components/ScrollChapter"
 import { Container } from "../_components/Section"
 import SectionHeader from "../_components/SectionHeader"
 import BeanIcon from "../_components/BeanIcon"
@@ -53,11 +53,9 @@ const grinds = [
   { name: "Extra fino", look: "Harina", time: "Hervido directo", uses: "Café turco" },
 ]
 
-export default function OurCoffee() {
+export function OurCoffeeOrigin() {
   return (
-    <>
-      {/* Origen — un solo paso, altura reducida */}
-      <ScrollStory tone="milk" prevTone="green-dark" className="overflow-hidden" id="NuestroCafe" stepVh={60}
+    <ScrollChapter tone="milk" id="NuestroCafe" stepVh={60}
         steps={[
           <Container key="origen">
             <div className="grid gap-10 md:grid-cols-2 md:items-center md:gap-14">
@@ -112,10 +110,13 @@ export default function OurCoffee() {
           </Container>,
         ]}
       />
+  )
+}
 
-      {/* Grados de tueste */}
-      <ScrollStory tone="cream" prevTone="milk"
-        steps={[
+export function RoastLevels() {
+  return (
+    <ScrollChapter tone="cream"
+      steps={[
           <Container size="wide" key="header">
             <SectionHeader
               eyebrow="Grados de tueste"
@@ -195,10 +196,13 @@ export default function OurCoffee() {
           </Container>,
         ]}
       />
+  )
+}
 
-      {/* Tipos de molido */}
-      <ScrollStory tone="milk" prevTone="cream"
-        steps={[
+export function GrindTypes() {
+  return (
+    <ScrollChapter tone="sand"
+      steps={[
           <Container key="header">
             <SectionHeader
               eyebrow="Tipos de molido"
@@ -218,7 +222,6 @@ export default function OurCoffee() {
           </Container>,
         ]}
       />
-    </>
   )
 }
 

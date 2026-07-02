@@ -6,7 +6,13 @@ import { Button, ButtonLink } from "../_components/Button"
 import BeanIcon from "../_components/BeanIcon"
 import { gsap, useGSAP } from "../_lib/gsap"
 
-export default function Hero({ handleContactModal }: { handleContactModal: () => void }) {
+export default function Hero({
+  handleContactModal,
+  onImageLoad,
+}: {
+  handleContactModal: () => void
+  onImageLoad?: () => void
+}) {
   const sectionRef = useRef<HTMLElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const indicatorRef = useRef<HTMLDivElement>(null)
@@ -41,6 +47,8 @@ export default function Hero({ handleContactModal }: { handleContactModal: () =>
         priority
         sizes="100vw"
         className="object-cover object-center opacity-35"
+        onLoad={onImageLoad}
+        onError={onImageLoad}
       />
       <div className="absolute inset-0 bg-(--espresso)/40" />
 

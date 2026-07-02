@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from "react"
-import ScrollStory from "../_components/ScrollStory"
+import ScrollChapter from "../_components/ScrollChapter"
 import { Container } from "../_components/Section"
 import SectionHeader from "../_components/SectionHeader"
 
@@ -92,7 +92,7 @@ export default function Benefits() {
   const data = profiles[active]
 
   return (
-    <ScrollStory tone="cream" prevTone="coffee" id="Beneficios"
+    <ScrollChapter tone="sand" id="Beneficios"
       steps={[
         <Container key="header">
           <SectionHeader
