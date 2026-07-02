@@ -20,7 +20,7 @@ const steps = [
     number: "02",
     name: "Fermentación",
     description:
-      "El grano reposa en agua durante horas controladas. Este proceso descompone la pulpa y activa los compuestos que dan carácter y complejidad a la taza.",
+      "El grano es conservado durante horas controladas. Este proceso descompone la pulpa y activa los compuestos que dan carácter y complejidad a la taza.",
     image: "/img/cafe_natural.jpeg",
     detail: "Proceso húmedo · 18–36 horas",
   },
@@ -28,7 +28,7 @@ const steps = [
     number: "03",
     name: "Secado",
     description:
-      "Extendidos bajo el sol de Loja, los granos pierden humedad lentamente. El secado natural preserva los azúcares y aromas que el tueste luego revelará.",
+      "Extendidos bajo el sol de Vilcabamba, los granos pierden humedad lentamente. El secado natural preserva los azúcares y aromas que el tueste luego revelará.",
     image: "/img/carrousel_1.jpeg",
     detail: "Secado solar · 10–20 días",
   },
@@ -44,9 +44,9 @@ const steps = [
     number: "05",
     name: "Tueste",
     description:
-      "El grano verde entra al tostador y en minutos se transforma. Nuestro tueste medio preserva los sabores del origen — dulce, redondo, sin amargor.",
+      "El grano verde entra al tostador y en minutos se transforma. Nuestro tueste medio preserva los sabores del origen — dulce, complejo, sin amargor.",
     image: "/img/carrousel_3.jpeg",
-    detail: "Tueste medio · 195–205 °C",
+    detail: "Tueste medio",
   },
   {
     number: "06",

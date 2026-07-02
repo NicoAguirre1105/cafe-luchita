@@ -1,7 +1,8 @@
 'use client'
 
-import { createContext, useRef, useState } from "react"
+import { createContext, useEffect, useRef, useState } from "react"
 import { gsap, useGSAP } from "../_lib/gsap"
+import { setMasterTimeline } from "../_lib/scrollytelling"
 import { bgColorVar, darkBgTones, type Tone } from "./tones"
 
 const FADE_VH = 28
@@ -30,6 +31,8 @@ interface ScheduleOp {
   el?: HTMLDivElement
   /** índice de capítulo al que se entra avanzando (el anterior es chapterIndex - 1) */
   chapterIndex?: number
+  /** solo en el primer stepIn de un capítulo con id — para registrar la label de navegación */
+  chapterId?: string
 }
 
 // Recorre los capítulos y arma la línea de tiempo (en vh) del timeline maestro:
@@ -43,7 +46,7 @@ function buildSchedule(chapters: ChapterData[]) {
     const n = els.length
     if (n === 0) return
 
-    ops.push({ at: cursor, duration: FADE_VH, kind: "stepIn", el: els[0] })
+    ops.push({ at: cursor, duration: FADE_VH, kind: "stepIn", el: els[0], chapterId: chapter.id })
     cursor += FADE_VH
 
     for (let i = 0; i < n; i++) {
@@ -111,6 +114,12 @@ export default function CoffeeSections({ children }: { children: React.ReactNode
       ops.forEach((op) => {
         if (op.kind === "stepIn") {
           tl.fromTo(op.el!, { autoAlpha: 0, y: 28 }, { autoAlpha: 1, y: 0, duration: op.duration }, op.at)
+          // Label en el momento justo en que termina el fade-in — un link de
+          // navegación puede saltar acá directo, ya con el contenido visible,
+          // sin que el usuario tenga que scrollear manualmente hasta encontrarlo.
+          if (op.chapterId) {
+            tl.addLabel(op.chapterId, op.at + op.duration)
+          }
         } else if (op.kind === "stepOut") {
           tl.to(op.el!, { autoAlpha: 0, y: -28, duration: op.duration }, op.at)
         } else {
@@ -127,9 +136,15 @@ export default function CoffeeSections({ children }: { children: React.ReactNode
           )
         }
       })
+
+      setMasterTimeline(tl)
     },
     { scope: pinRef, dependencies: [] }
   )
+
+  useEffect(() => {
+    return () => setMasterTimeline(null)
+  }, [])
 
   const activeTone = tones[activeIndex] ?? "milk"
   const isDark = darkBgTones.includes(activeTone)

@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
+import { handleHashLinkClick } from "../_lib/scrollytelling"
 
 const socials = [
   { href: "https://www.facebook.com/profile.php?id=61565592500491&locale=es_LA", icon: "/icons/facebook_logo.svg", label: "Facebook" },
@@ -44,7 +45,11 @@ export default function Footer() {
             <ul className="mt-4 flex flex-col gap-2 text-sm">
               {nav.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="hover:text-(--orange) transition-colors">
+                  <Link
+                    href={l.href}
+                    onClick={(e) => handleHashLinkClick(e, l.href)}
+                    className="hover:text-(--orange) transition-colors"
+                  >
                     {l.label}
                   </Link>
                 </li>

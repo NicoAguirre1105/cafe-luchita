@@ -18,7 +18,7 @@ const cards = [
   {
     title: "Tiempos",
     value: "2–5 días hábiles",
-    description: "Una vez confirmado el pedido. Coordinamos el seguimiento contigo para que sepas exactamente cuándo llega.",
+    description: "Una vez confirmado el pedido, coordinamos la entrega directamente contigo. Nos encargamos del resto.",
     icon: (
       <svg viewBox="0 0 32 32" fill="none" className="h-7 w-7">
         <circle cx="16" cy="16" r="12" stroke="currentColor" strokeWidth="2" />
@@ -29,7 +29,7 @@ const cards = [
   {
     title: "Modalidades",
     value: "Bajo pedido o periódica",
-    description: "Pídelo cuando se te acabe o configura entregas regulares para no quedarte sin café nunca más.",
+    description: "Pídelo cuando esté por acabarse o configura entregas regulares para no quedarte sin café nunca.",
     icon: (
       <svg viewBox="0 0 32 32" fill="none" className="h-7 w-7">
         <path d="M6 16a10 10 0 0118-6M26 16A10 10 0 018 22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -55,7 +55,7 @@ export default function Delivery() {
               </h2>
               <p className="mt-5 text-base md:text-lg leading-relaxed text-(--cream)/80 max-w-md">
                 Enviamos a nivel nacional. Coordinamos contigo y nos encargamos del
-                resto — desde la finca hasta donde estés.
+                resto — desde la finca a tu hogar.
               </p>
             </div>
 

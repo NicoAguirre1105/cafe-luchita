@@ -5,6 +5,7 @@ import Image from "next/image"
 import { Button, ButtonLink } from "../_components/Button"
 import BeanIcon from "../_components/BeanIcon"
 import { gsap, useGSAP } from "../_lib/gsap"
+import { handleHashLinkClick } from "../_lib/scrollytelling"
 
 export default function Hero({
   handleContactModal,
@@ -61,13 +62,13 @@ export default function Hero({
         <div className="animate-fade-up flex items-center gap-3">
           <BeanIcon size={16} className="text-(--orange) flex-none" />
           <span className="text-xs uppercase tracking-[0.25em] font-semibold text-(--cream)/70">
-            Cararango, Loja · desde 1958
+            Cararango, San Pedro de Vilcabamba, Loja · desde 1958
           </span>
         </div>
 
         {/* Headline */}
         <h1
-          className="animate-fade-up font-(family-name:--font-display) text-(--cream) font-bold leading-[1] max-w-3xl"
+          className="animate-fade-up font-(family-name:--font-display) text-(--cream) font-bold leading-none max-w-3xl"
           style={{ animationDelay: "0.08s", fontSize: "clamp(2.8rem, 7vw, 6.5rem)" }}
         >
           El sabor de{" "}
@@ -81,8 +82,8 @@ export default function Hero({
           style={{ animationDelay: "0.18s" }}
         >
           <p className="max-w-md text-sm md:text-base leading-relaxed text-(--cream)/75">
-            Café arábigo cultivado a más de 1.700 m.s.n.m., tostado al punto justo
-            y enviado a todo el Ecuador.
+            Café arábigo cultivado a 1.700 m.s.n.m., tostado al punto justo
+            y con envío a todo el Ecuador.
           </p>
 
           <div className="border-t border-(--cream)/15 pt-5 grid grid-cols-3 gap-4 shrink-0 min-w-[260px]">
@@ -102,6 +103,7 @@ export default function Hero({
           </Button>
           <ButtonLink
             href="#Presentaciones"
+            onClick={(e) => handleHashLinkClick(e, "#Presentaciones")}
             variant="ghost"
             size="lg"
             className="text-(--cream)/80 hover:text-(--cream)"

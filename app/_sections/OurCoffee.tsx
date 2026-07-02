@@ -72,7 +72,7 @@ export function OurCoffeeOrigin() {
                 <div className="mt-5 space-y-3 text-sm md:text-base leading-relaxed text-(--coffee)/80">
                   <p>
                     En el sur del Ecuador, entre los valles que rodean Vilcabamba, se eleva
-                    el cerro de Cararango. Ahí, a más de <strong className="text-(--coffee)">1.700 m.s.n.m.</strong>,
+                    el cerro de Cararango. Ahí, a <strong className="text-(--coffee)">1.700 m.s.n.m.</strong>,
                     nuestras fincas aprovechan un clima subtropical único.
                   </p>
                   <p>
@@ -90,7 +90,7 @@ export function OurCoffeeOrigin() {
               </div>
 
               <div className="order-1 md:order-2">
-                <div className="relative">
+                <div className="relative md:max-w-[85%] md:mx-auto">
                   <div className="relative aspect-[16/10] md:aspect-[4/4] overflow-hidden rounded-3xl border border-(--sand)">
                     <Image
                       src="/img/cafe_natural.jpeg"

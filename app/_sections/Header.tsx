@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "../_components/Button"
+import { handleHashLinkClick } from "../_lib/scrollytelling"
 
 const links = [
   { href: "#Inicio",        label: "Inicio" },
@@ -102,6 +103,7 @@ export default function Header({
                 <li key={l.href}>
                   <Link
                     href={l.href}
+                    onClick={(e) => handleHashLinkClick(e, l.href)}
                     className="transition-colors duration-200 hover:text-(--orange)"
                     style={{ color: isContactModalOpen ? "var(--green)" : "var(--cream)" }}
                   >
@@ -167,7 +169,10 @@ export default function Header({
               <li key={l.href}>
                 <Link
                   href={l.href}
-                  onClick={closeMenu}
+                  onClick={(e) => {
+                    handleHashLinkClick(e, l.href)
+                    closeMenu()
+                  }}
                   className="block font-(family-name:--font-display) text-3xl py-3 text-(--coffee) hover:text-(--green) transition-colors"
                   style={{ transitionDelay: `${i * 40}ms` }}
                 >

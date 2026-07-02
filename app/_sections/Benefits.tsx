@@ -14,18 +14,17 @@ const Icon = ({ children }: { children: React.ReactNode }) => (
 )
 
 const icons = {
-  bolt:     <Icon><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></Icon>,
-  runner:   <Icon><circle cx="13" cy="4" r="2" /><path d="M7 21l3.5-8L13 16l3-8 2 4h2" /><path d="M5 13l4-3 4 1" /></Icon>,
-  cycle:    <Icon><polyline points="1 4 1 10 7 10" /><polyline points="23 20 23 14 17 14" /><path d="M20.5 9A9 9 0 005.6 5.6L1 10M23 14l-4.6 4.4A9 9 0 013.5 15" /></Icon>,
-  stomach:  <Icon><path d="M8 8a4 4 0 018 0c0 3-1.5 5-1.5 8h-5C9.5 13 8 11 8 8z" /><path d="M10 16h4" /><path d="M10.5 11c.5 1 3 1 3 0" /></Icon>,
-  brain:    <Icon><path d="M9.5 2a2.5 2.5 0 014.5 2A2.5 2.5 0 0118 6.5a2.5 2.5 0 01-2 4.5v1A2.5 2.5 0 0113.5 16h-3A2.5 2.5 0 018 13.5v-1A2.5 2.5 0 016 8a2.5 2.5 0 013.5-6z" /></Icon>,
-  scale:    <Icon><line x1="12" y1="3" x2="12" y2="21" /><path d="M5 6l7-3 7 3" /><path d="M3 10l4 8H3m14-8l4 8h-8" /><line x1="3" y1="18" x2="21" y2="18" /></Icon>,
-  lightbulb:<Icon><path d="M9 18h6M10 22h4M12 2a7 7 0 017 7c0 2.9-1.7 5.4-4 6.7V18H9v-2.3A7 7 0 0112 2z" /></Icon>,
-  smile:    <Icon><circle cx="12" cy="12" r="10" /><path d="M8 14s1.5 2 4 2 4-2 4-2" /><line x1="9" y1="9" x2="9.01" y2="9" /><line x1="15" y1="9" x2="15.01" y2="9" /></Icon>,
-  sunrise:  <Icon><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" /><path d="M4 20h16" /></Icon>,
-  shuffle:  <Icon><polyline points="16 3 21 3 21 8" /><line x1="4" y1="20" x2="21" y2="3" /><polyline points="21 16 21 21 16 21" /><line x1="15" y1="15" x2="21" y2="21" /><line x1="4" y1="4" x2="9" y2="9" /></Icon>,
-  dna:      <Icon><path d="M2 4c6.667 8 13.333 8 20 0M2 20c6.667-8 13.333-8 20 0M2 12h20" /><circle cx="7" cy="8" r="1" fill="currentColor" stroke="none" /><circle cx="17" cy="16" r="1" fill="currentColor" stroke="none" /></Icon>,
-  users:    <Icon><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" /></Icon>,
+  bolt:       <Icon><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></Icon>,
+  heartPulse: <Icon><path d="M22 12h-4l-3 9L9 3l-3 9H2" /></Icon>,
+  cycle:      <Icon><polyline points="1 4 1 10 7 10" /><polyline points="23 20 23 14 17 14" /><path d="M20.5 9A9 9 0 005.6 5.6L1 10M23 14l-4.6 4.4A9 9 0 013.5 15" /></Icon>,
+  brain:      <Icon><path d="M9.5 2a2.5 2.5 0 014.5 2A2.5 2.5 0 0118 6.5a2.5 2.5 0 01-2 4.5v1A2.5 2.5 0 0113.5 16h-3A2.5 2.5 0 018 13.5v-1A2.5 2.5 0 016 8a2.5 2.5 0 013.5-6z" /></Icon>,
+  gitBranch:  <Icon><line x1="6" y1="3" x2="6" y2="15" /><circle cx="18" cy="6" r="3" /><circle cx="6" cy="18" r="3" /><path d="M18 9a9 9 0 01-9 9" /></Icon>,
+  lightbulb:  <Icon><path d="M9 21h6" /><path d="M10 19h4" /><path d="M12 3a6 6 0 00-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0012 3z" /></Icon>,
+  smile:      <Icon><circle cx="12" cy="12" r="10" /><path d="M8 14s1.5 2 4 2 4-2 4-2" /><line x1="9" y1="9" x2="9.01" y2="9" /><line x1="15" y1="9" x2="15.01" y2="9" /></Icon>,
+  sunrise:    <Icon><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" /><path d="M4 20h16" /></Icon>,
+  shuffle:    <Icon><polyline points="16 3 21 3 21 8" /><line x1="4" y1="20" x2="21" y2="3" /><polyline points="21 16 21 21 16 21" /><line x1="15" y1="15" x2="21" y2="21" /><line x1="4" y1="4" x2="9" y2="9" /></Icon>,
+  dna:        <Icon><path d="M2 4c6.667 8 13.333 8 20 0M2 20c6.667-8 13.333-8 20 0M2 12h20" /><circle cx="7" cy="8" r="1" fill="currentColor" stroke="none" /><circle cx="17" cy="16" r="1" fill="currentColor" stroke="none" /></Icon>,
+  users:      <Icon><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" /></Icon>,
 }
 
 const reasons = [
@@ -56,10 +55,10 @@ const profiles: Record<
     label: "Deportistas",
     subtitle: "Pre y post entrenamiento",
     points: [
-      { icon: icons.bolt,    title: "Rendimiento medible",       desc: "La EFSA confirma que 3–6 mg/kg de cafeína mejoran resistencia y fuerza muscular sin sobreestimulación." },
-      { icon: icons.runner,  title: "Retrasa la fatiga",         desc: "Bloquea los receptores de adenosina y permite entrenamientos más intensos con la misma percepción de esfuerzo." },
-      { icon: icons.cycle,   title: "Recuperación más rápida",   desc: "Tomado con carbohidratos post-ejercicio acelera la reposición de glucógeno muscular." },
-      { icon: icons.stomach, title: "Amigable al estómago",      desc: "Acidez moderada que no provoca molestias gástricas en ayunas antes de entrenar." },
+      { icon: icons.bolt,       title: "Rendimiento medible",       desc: "La EFSA confirma que 3–6 mg/kg de cafeína mejoran resistencia y fuerza muscular sin sobreestimulación." },
+      { icon: icons.heartPulse, title: "Retrasa la fatiga",         desc: "Bloquea los receptores de adenosina y permite entrenamientos más intensos con la misma percepción de esfuerzo." },
+      { icon: icons.cycle,      title: "Recuperación más rápida",   desc: "Tomado con carbohidratos post-ejercicio acelera la reposición de glucógeno muscular." },
+      { icon: icons.smile,      title: "Amigable al estómago",      desc: "Acidez moderada que no provoca molestias gástricas en ayunas antes de entrenar." },
     ],
     tip: "30–45 min antes del entrenamiento, cuando la cafeína alcanza su pico máximo en sangre.",
   },
@@ -68,7 +67,7 @@ const profiles: Record<
     subtitle: "Rendimiento cognitivo",
     points: [
       { icon: icons.brain,     title: "Concentración sostenida",      desc: "Mejora la memoria de trabajo y la atención en tareas complejas. Ideal para jornadas largas." },
-      { icon: icons.scale,     title: "Mejor toma de decisiones",     desc: "Contrarresta la fatiga de decisión que se acumula en reuniones y negociaciones." },
+      { icon: icons.gitBranch, title: "Mejor toma de decisiones",     desc: "Contrarresta la fatiga de decisión que se acumula en reuniones y negociaciones." },
       { icon: icons.lightbulb, title: "Creatividad e innovación",     desc: "Investigación del MIT vincula el café moderado con mayor pensamiento lateral." },
       { icon: icons.smile,     title: "Bienestar emocional",          desc: "Estimula dopamina y serotonina, mejorando el ánimo en entornos de alta presión." },
     ],

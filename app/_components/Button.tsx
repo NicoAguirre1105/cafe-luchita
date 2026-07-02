@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes, AnchorHTMLAttributes } from "react"
 
-type Variant = "primary" | "secondary" | "outline" | "ghost" | "orange"
+type Variant = "primary" | "secondary" | "outline" | "ghost" | "orange" | "cream"
 type Size = "md" | "lg"
 
 const variantMap: Record<Variant, string> = {
@@ -10,6 +10,8 @@ const variantMap: Record<Variant, string> = {
     "bg-(--green) text-(--white) hover:bg-(--green-dark)",
   orange:
     "bg-(--orange-dark) text-(--cream) hover:bg-(--orange-darker)",
+  cream:
+    "bg-(--cream) text-(--green) hover:bg-(--milk)",
   outline:
     "border-2 border-current bg-transparent hover:bg-current/10",
   ghost:

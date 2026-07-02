@@ -115,7 +115,7 @@ export default function ContactModal({
                   <ValidationError field="message" prefix="Message" errors={state.errors} />
                 </div>
 
-                <Button type="submit" variant="primary" size="lg" disabled={state.submitting} className="mt-2 self-start">
+                <Button type="submit" variant="cream" size="lg" disabled={state.submitting} className="mt-2 self-start">
                   Enviar mensaje
                 </Button>
               </form>

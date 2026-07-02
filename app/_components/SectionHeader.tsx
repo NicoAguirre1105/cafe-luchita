@@ -4,16 +4,18 @@ export default function SectionHeader({
   description,
   align = "center",
   accentColor = "var(--orange)",
+  maxWidth = "max-w-2xl",
 }: {
   eyebrow?: string
   title: React.ReactNode
   description?: React.ReactNode
   align?: "left" | "center"
   accentColor?: string
+  maxWidth?: string
 }) {
   const alignment = align === "center" ? "items-center text-center mx-auto" : "items-start text-left"
   return (
-    <div className={`flex flex-col gap-4 max-w-2xl ${alignment}`}>
+    <div className={`flex flex-col gap-4 ${maxWidth} ${alignment}`}>
       {eyebrow && (
         <span
           className="inline-flex items-center gap-2 text-xs md:text-sm uppercase tracking-[0.2em] font-semibold"

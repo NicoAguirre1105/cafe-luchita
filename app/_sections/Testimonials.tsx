@@ -59,6 +59,7 @@ export default function Testimonials() {
             <SectionHeader
               eyebrow="Lo que dicen"
               accentColor="var(--green)"
+              maxWidth="max-w-4xl"
               title={
                 <>
                   Una taza que se{" "}
