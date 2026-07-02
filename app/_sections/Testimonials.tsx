@@ -1,8 +1,8 @@
 'use client'
 
-import Section, { Container } from "../_components/Section"
+import ScrollStory from "../_components/ScrollStory"
+import { Container } from "../_components/Section"
 import SectionHeader from "../_components/SectionHeader"
-import Reveal from "../_components/Reveal"
 
 // PLACEHOLDER: reemplazar por testimonios reales cuando estén disponibles
 const testimonials = [
@@ -24,49 +24,88 @@ const testimonials = [
     author: "Carolina V.",
     role: "Cliente en Loja",
   },
+  {
+    quote:
+      "Pedí para mi familia en Cuenca sin saber si el envío nacional iba a funcionar bien. Llegó perfecto y a tiempo.",
+    author: "Diego P.",
+    role: "Cliente en Cuenca",
+  },
+  {
+    quote:
+      "Tenemos el convenio para la oficina hace meses. Ya nadie se acuerda de comprar café en el súper.",
+    author: "Valentina S.",
+    role: "Oficina · Guayaquil",
+  },
+  {
+    quote:
+      "El tueste medio es justo lo que buscaba: no amargo, no ácido. Se nota que es café de altura.",
+    author: "Fernando A.",
+    role: "Cliente en Ambato",
+  },
+  {
+    quote:
+      "Regalé una funda en Navidad y terminé siendo yo quien pide ahora todos los meses.",
+    author: "Isabel T.",
+    role: "Cliente en Loja",
+  },
 ]
 
 export default function Testimonials() {
   return (
-    <Section tone="milk">
-      <Container>
-        <Reveal>
-          <SectionHeader
-            eyebrow="Lo que dicen"
-            accentColor="var(--green)"
-            title={
-              <>
-                Una taza que se{" "}
-                <em className="not-italic italic text-(--green) font-semibold">comparte</em>.
-              </>
-            }
-            description="No vendemos café — acompañamos rituales. Esto nos cuentan quienes ya lo preparan en casa o en la oficina."
-          />
-        </Reveal>
+    <ScrollStory tone="milk" prevTone="green"
+      steps={[
+        <div key="testimonials">
+          <Container>
+            <SectionHeader
+              eyebrow="Lo que dicen"
+              accentColor="var(--green)"
+              title={
+                <>
+                  Una taza que se{" "}
+                  <em className="not-italic italic text-(--green) font-semibold">comparte</em>.
+                </>
+              }
+              description="No vendemos café — acompañamos rituales. Esto nos cuentan quienes ya lo preparan en casa o en la oficina."
+            />
+          </Container>
+          <div className="mt-14 w-screen relative left-1/2 -translate-x-1/2">
+            <Carousel />
+          </div>
+        </div>,
+      ]}
+    />
+  )
+}
 
-        <ul className="mt-16 grid gap-6 md:grid-cols-3 md:gap-8">
-          {testimonials.map((t, i) => (
-            <Reveal as="li" key={t.author} delay={i * 120}>
-              <article className="h-full rounded-3xl border border-(--sand) bg-(--cream) p-7 flex flex-col">
-                <Quote />
-                <p className="mt-6 text-base md:text-lg leading-relaxed text-(--coffee)/85 flex-1 italic font-(family-name:--font-display)">
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-                <footer className="mt-6 flex items-center gap-3 border-t border-(--sand) pt-5">
-                  <span className="grid h-10 w-10 place-items-center rounded-full bg-(--green) text-(--cream) font-(family-name:--font-display) text-lg">
-                    {t.author[0]}
-                  </span>
-                  <div>
-                    <p className="font-semibold text-(--coffee) text-sm">{t.author}</p>
-                    <p className="text-xs text-(--bark)/70">{t.role}</p>
-                  </div>
-                </footer>
-              </article>
-            </Reveal>
-          ))}
-        </ul>
-      </Container>
-    </Section>
+function Carousel() {
+  // Marquee infinito por CSS: el track duplica los testimonios y se desplaza
+  // con una animación continua (más confiable que scrollLeft por JS).
+  const looped = [...testimonials, ...testimonials]
+
+  return (
+    <div className="overflow-hidden">
+      <ul className="animate-marquee flex w-max gap-6">
+        {looped.map((t, i) => (
+          <li key={`${t.author}-${i}`} className="w-[280px] sm:w-[340px] shrink-0">
+            <article className="h-full rounded-3xl border border-(--sand) bg-(--cream) p-7 flex flex-col">
+              <Quote />
+              <p className="mt-6 text-base leading-relaxed text-(--coffee)/85 flex-1 italic font-(family-name:--font-display)">
+                &ldquo;{t.quote}&rdquo;
+              </p>
+              <footer className="mt-6 flex items-center gap-3 border-t border-(--sand) pt-5">
+                <span className="grid h-10 w-10 place-items-center rounded-full bg-(--green) text-(--cream) font-(family-name:--font-display) text-lg">
+                  {t.author[0]}
+                </span>
+                <div>
+                  <p className="font-semibold text-(--coffee) text-sm">{t.author}</p>
+                  <p className="text-xs text-(--bark)/70">{t.role}</p>
+                </div>
+              </footer>
+            </article>
+          </li>
+        ))}
+      </ul>
+    </div>
   )
 }
 

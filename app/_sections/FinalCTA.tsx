@@ -1,8 +1,8 @@
 'use client'
 
-import Section, { Container } from "../_components/Section"
+import ScrollStory from "../_components/ScrollStory"
+import { Container } from "../_components/Section"
 import { Button } from "../_components/Button"
-import Reveal from "../_components/Reveal"
 import BeanIcon from "../_components/BeanIcon"
 
 export default function FinalCTA({
@@ -11,9 +11,9 @@ export default function FinalCTA({
   handleContactModal: () => void
 }) {
   return (
-    <Section tone="orange" pattern fullHeight>
-      <Container>
-        <Reveal>
+    <ScrollStory tone="cream" prevTone="green-dark"
+      steps={[
+        <Container key="cta">
           <div className="relative flex flex-col items-center text-center gap-8 max-w-3xl mx-auto">
             <BeanIcon size={56} className="text-(--coffee)" />
             <h2 className="font-(family-name:--font-display) text-4xl md:text-6xl leading-[1.05] font-medium text-(--coffee)">
@@ -36,8 +36,8 @@ export default function FinalCTA({
               </a>
             </div>
           </div>
-        </Reveal>
-      </Container>
-    </Section>
+        </Container>,
+      ]}
+    />
   )
 }

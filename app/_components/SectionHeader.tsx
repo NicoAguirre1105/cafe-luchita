@@ -23,7 +23,7 @@ export default function SectionHeader({
           {eyebrow}
         </span>
       )}
-      <h2 className="font-(family-name:--font-display) text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.1]">
+      <h2 className="font-(family-name:--font-display) text-4xl md:text-6xl lg:text-7xl font-medium leading-[1.05]">
         {title}
       </h2>
       {description && (

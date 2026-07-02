@@ -1,12 +1,36 @@
 'use client'
 
+import { useRef } from "react"
 import Image from "next/image"
 import { Button, ButtonLink } from "../_components/Button"
 import BeanIcon from "../_components/BeanIcon"
+import { gsap, useGSAP } from "../_lib/gsap"
 
 export default function Hero({ handleContactModal }: { handleContactModal: () => void }) {
+  const sectionRef = useRef<HTMLElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
+  const indicatorRef = useRef<HTMLDivElement>(null)
+
+  useGSAP(() => {
+    const targets = [contentRef.current, indicatorRef.current].filter(Boolean)
+
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top top",
+        end: () => `+=${window.innerHeight * 0.65}`,
+        scrub: 0.6,
+        pin: true,
+        anticipatePin: 1,
+      },
+      defaults: { ease: "power1.inOut" },
+      // el contenido queda visible ~45% del tramo, luego se vacía antes de despinear
+    }).to(targets, { autoAlpha: 0, y: -28, duration: 0.55 }, 0.45)
+  }, { scope: sectionRef })
+
   return (
     <section
+      ref={sectionRef}
       id="Inicio"
       className="relative w-full min-h-dvh overflow-hidden bg-(--espresso) flex items-end pb-16 md:items-center md:pb-0"
     >
@@ -20,7 +44,10 @@ export default function Hero({ handleContactModal }: { handleContactModal: () =>
       />
       <div className="absolute inset-0 bg-(--espresso)/40" />
 
-      <div className="relative z-10 w-full max-w-5xl mx-auto px-6 md:px-10 pt-28 md:pt-0 flex flex-col gap-6 md:gap-8">
+      <div
+        ref={contentRef}
+        className="relative z-10 w-full max-w-5xl mx-auto px-6 md:px-10 pt-28 md:pt-0 flex flex-col gap-6 md:gap-8"
+      >
 
         {/* Eyebrow */}
         <div className="animate-fade-up flex items-center gap-3">
@@ -78,6 +105,7 @@ export default function Hero({ handleContactModal }: { handleContactModal: () =>
 
       {/* Scroll indicator — arrow */}
       <div
+        ref={indicatorRef}
         className="hidden md:flex absolute bottom-8 right-10 flex-col items-center gap-2 text-(--cream)/40 animate-fade-in"
         style={{ animationDelay: "1s" }}
       >

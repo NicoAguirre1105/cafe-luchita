@@ -1,10 +1,10 @@
 'use client'
 
 import Image from "next/image"
-import Section, { Container } from "../_components/Section"
+import ScrollStory from "../_components/ScrollStory"
+import { Container } from "../_components/Section"
 import SectionHeader from "../_components/SectionHeader"
 import { Button } from "../_components/Button"
-import Reveal from "../_components/Reveal"
 import BeanIcon from "../_components/BeanIcon"
 
 interface Product {
@@ -60,9 +60,9 @@ export default function Presentations({
   handleContactModal: () => void
 }) {
   return (
-    <Section tone="cream">
-      <Container size="wide">
-        <Reveal>
+    <ScrollStory tone="cream" prevTone="milk" id="Presentaciones"
+      steps={[
+        <Container size="wide" key="header">
           <SectionHeader
             eyebrow="Presentaciones"
             accentColor="var(--green)"
@@ -74,35 +74,28 @@ export default function Presentations({
             }
             description="Todas las presentaciones tienen el mismo grano, el mismo tueste medio y el mismo cuidado. Solo cambia el formato."
           />
-        </Reveal>
-
-        {/* Cards: scroll horizontal en mobile, grid en md+ */}
-        <div className="mt-14 -mx-5 md:mx-0">
-          <ul className="no-scrollbar flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 md:grid md:grid-cols-2 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-4">
+        </Container>,
+        <Container size="wide" key="cards">
+          <h3 className="mb-10 md:mb-12 font-(family-name:--font-display) text-3xl md:text-5xl text-center text-(--coffee)">
+            Un café, cuatro formas de{" "}
+            <em className="not-italic italic text-(--green) font-semibold">vivirlo</em>.
+          </h3>
+          <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {products.map((product, i) => (
-              <Reveal
-                as="li"
-                key={`${product.name}-${product.weight}-${i}`}
-                delay={i * 100}
-                className="min-w-[80%] snap-center md:min-w-0"
-              >
-                <ProductCard
-                  product={product}
-                  onContact={handleContactModal}
-                />
-              </Reveal>
+              <li key={`${product.name}-${product.weight}-${i}`}>
+                <ProductCard product={product} onContact={handleContactModal} />
+              </li>
             ))}
           </ul>
-        </div>
-      </Container>
-    </Section>
+        </Container>,
+      ]}
+    />
   )
 }
 
 function ProductCard({ product, onContact }: { product: Product; onContact: () => void }) {
   return (
     <article
-      id={product.weight === "250 g" ? "Presentaciones" : undefined}
       className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border transition-all duration-300 hover:-translate-y-1 ${
         product.upcoming
           ? "border-dashed border-(--bark)/30 bg-(--milk)"
@@ -111,13 +104,13 @@ function ProductCard({ product, onContact }: { product: Product; onContact: () =
     >
       {/* Badge */}
       {product.badge && (
-        <span className="absolute top-4 right-4 z-10 rounded-full bg-(--orange) px-3 py-1 text-xs font-semibold text-(--coffee)">
+        <span className="absolute top-3 right-3 z-10 rounded-full bg-(--orange) px-3 py-1 text-xs font-semibold text-(--coffee)">
           {product.badge}
         </span>
       )}
 
-      {/* Image / placeholder */}
-      <div className="relative aspect-[4/5] w-full overflow-hidden bg-(--cream)">
+      {/* Image / placeholder — shorter aspect for compact card */}
+      <div className="relative aspect-[4/3] w-full overflow-hidden bg-(--cream)">
         {product.image ? (
           <Image
             src={product.image}
@@ -128,38 +121,34 @@ function ProductCard({ product, onContact }: { product: Product; onContact: () =
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-(--cream) text-(--green)">
-            <BeanIcon size={80} className="opacity-30" />
+            <BeanIcon size={56} className="opacity-30" />
           </div>
         )}
       </div>
 
       {/* Content */}
-      <div className="flex flex-1 flex-col gap-3 p-6">
+      <div className="flex flex-1 flex-col gap-2 p-5">
         <div className="flex items-baseline justify-between gap-2">
           <span className="text-xs uppercase tracking-widest text-(--green) font-semibold">
             {product.format}
           </span>
-          <span className="font-(family-name:--font-display) text-lg text-(--bark)">
+          <span className="font-(family-name:--font-display) text-base text-(--bark)">
             {product.weight}
           </span>
         </div>
 
-        <h3 className="font-(family-name:--font-display) text-2xl text-(--coffee)">
+        <h3 className="font-(family-name:--font-display) text-xl text-(--coffee)">
           {product.name}
         </h3>
 
-        <p className="text-sm text-(--coffee)/70 leading-relaxed flex-1">
-          {product.description}
-        </p>
-
-        <div className="mt-4 flex items-center justify-between border-t border-(--sand) pt-4 gap-3 min-w-0">
+        <div className="mt-2 flex items-center justify-between border-t border-(--sand) pt-3 gap-3 min-w-0">
           {product.upcoming ? (
-            <span className="font-(family-name:--font-display) text-lg text-(--bark)/60 italic truncate">
+            <span className="font-(family-name:--font-display) text-base text-(--bark)/60 italic truncate">
               Próximamente
             </span>
           ) : (
             <>
-              <span className="font-(family-name:--font-display) text-2xl text-(--coffee) shrink-0">
+              <span className="font-(family-name:--font-display) text-xl text-(--coffee) shrink-0">
                 {product.price}
               </span>
               <Button variant="secondary" size="md" onClick={onContact}>

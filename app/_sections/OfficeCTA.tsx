@@ -1,8 +1,8 @@
 'use client'
 
-import Section, { Container } from "../_components/Section"
+import ScrollStory from "../_components/ScrollStory"
+import { Container } from "../_components/Section"
 import { ButtonLink } from "../_components/Button"
-import Reveal from "../_components/Reveal"
 import BeanIcon from "../_components/BeanIcon"
 
 const WHATSAPP_OFFICE =
@@ -16,67 +16,69 @@ const benefits = [
 
 export default function OfficeCTA() {
   return (
-    <Section tone="green-dark" pattern fullHeight>
-      <Container>
-        <div className="grid gap-12 md:grid-cols-[1.2fr_1fr] md:items-center md:gap-16">
-          <Reveal className="flex flex-col gap-6">
-            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-(--cream)/30 px-4 py-1.5 text-xs uppercase tracking-[0.25em] font-semibold text-(--orange)">
-              <BeanIcon size={12} />
-              Para tu oficina
-            </span>
-            <h2 className="font-(family-name:--font-display) text-3xl md:text-5xl leading-[1.1] font-medium">
-              ¿Coworking, oficina o cafetería?{" "}
-              <em className="not-italic italic font-semibold text-(--orange)">
-                Hablemos.
-              </em>
-            </h2>
-            <p className="text-base md:text-lg leading-relaxed text-(--cream)/80 max-w-xl">
-              Tenemos convenios pensados para equipos de 5 a 30 personas y para
-              barras de especialidad. Entregas regulares, factura, y un café que
-              ya ofrece algo distinto sin que tengas que explicar mucho.
-            </p>
+    <ScrollStory tone="green-dark" prevTone="cream"
+      steps={[
+        <Container key="office">
+          <div className="grid gap-12 md:grid-cols-[1.2fr_1fr] md:items-center md:gap-16">
+            <div className="flex flex-col gap-6">
+              <span className="inline-flex w-fit items-center gap-2 rounded-full border border-(--cream)/30 px-4 py-1.5 text-xs uppercase tracking-[0.25em] font-semibold text-(--orange)">
+                <BeanIcon size={12} />
+                Para tu oficina
+              </span>
+              <h2 className="font-(family-name:--font-display) text-3xl md:text-5xl leading-[1.1] font-medium">
+                ¿Coworking, oficina o cafetería?{" "}
+                <em className="not-italic italic font-semibold text-(--orange)">
+                  Hablemos.
+                </em>
+              </h2>
+              <p className="text-base md:text-lg leading-relaxed text-(--cream)/80 max-w-xl">
+                Tenemos convenios pensados para equipos de 5 a 30 personas y para
+                barras de especialidad, en cualquier ciudad del país. Entregas regulares, factura, y un café que
+                ya ofrece algo distinto sin que tengas que explicar mucho.
+              </p>
 
-            <ul className="mt-2 flex flex-col gap-3">
-              {benefits.map((b) => (
-                <li key={b} className="flex items-start gap-3 text-sm md:text-base text-(--cream)/90">
-                  <Check />
-                  <span>{b}</span>
-                </li>
-              ))}
-            </ul>
+              <ul className="mt-2 flex flex-col gap-3">
+                {benefits.map((b) => (
+                  <li key={b} className="flex items-start gap-3 text-sm md:text-base text-(--cream)/90">
+                    <Check />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
 
-            <div className="mt-4">
-              <ButtonLink
-                href={WHATSAPP_OFFICE}
-                target="_blank"
-                rel="noreferrer"
-                variant="orange"
-                size="lg"
-              >
-                <WhatsAppIcon />
-                Cotiza ahora
-              </ButtonLink>
-            </div>
-          </Reveal>
-
-          {/* Decorative side panel */}
-          <Reveal delay={150} className="hidden md:block">
-            <div className="relative aspect-square rounded-3xl border border-(--cream)/15 bg-(--cream)/5 p-10">
-              <div className="grid grid-cols-2 gap-6 h-full">
-                <Stat number="5–30" label="personas por convenio" />
-                <Stat number="Sem." label="o quincenal" />
-                <Stat number="Nacional" label="cobertura de envíos" />
-                <Stat number="2–5 días" label="tiempo de entrega" />
+              <div className="mt-4">
+                <ButtonLink
+                  href={WHATSAPP_OFFICE}
+                  target="_blank"
+                  rel="noreferrer"
+                  variant="orange"
+                  size="lg"
+                >
+                  <WhatsAppIcon />
+                  Cotiza ahora
+                </ButtonLink>
               </div>
-              <BeanIcon
-                size={120}
-                className="absolute -bottom-6 -right-6 text-(--orange)/20 -rotate-12"
-              />
             </div>
-          </Reveal>
-        </div>
-      </Container>
-    </Section>
+
+            {/* Decorative side panel */}
+            <div className="hidden md:block">
+              <div className="relative aspect-square rounded-3xl border border-(--cream)/15 bg-(--cream)/5 p-10">
+                <div className="grid grid-cols-2 gap-6 h-full">
+                  <Stat number="5–30" label="personas por convenio" />
+                  <Stat number="Sem." label="o quincenal" />
+                  <Stat number="Nacional" label="cobertura de envíos" />
+                  <Stat number="100%" label="café ecuatoriano" />
+                </div>
+                <BeanIcon
+                  size={120}
+                  className="absolute -bottom-6 -right-6 text-(--orange)/20 -rotate-12"
+                />
+              </div>
+            </div>
+          </div>
+        </Container>,
+      ]}
+    />
   )
 }
 

@@ -1,8 +1,8 @@
 'use client'
 
-import Section, { Container } from "../_components/Section"
+import ScrollStory from "../_components/ScrollStory"
+import { Container } from "../_components/Section"
 import SectionHeader from "../_components/SectionHeader"
-import Reveal from "../_components/Reveal"
 
 const steps = [
   {
@@ -25,7 +25,7 @@ const steps = [
     number: "02",
     title: "Lo llevamos a tu puerta",
     description:
-      "Entrega a domicilio a nivel nacional. Cuidamos cada paquete para que llegue fresco, como recién tostado.",
+      "Entrega a domicilio en todo el Ecuador. Cuidamos cada paquete para que llegue fresco, como recién tostado.",
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="h-10 w-10">
         <path
@@ -59,9 +59,9 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <Section tone="milk" pattern fullHeight id="ComoFunciona">
-      <Container>
-        <Reveal>
+    <ScrollStory tone="milk" id="ComoFunciona"
+      steps={[
+        <Container key="header">
           <SectionHeader
             eyebrow="Cómo funciona"
             title={
@@ -72,29 +72,34 @@ export default function HowItWorks() {
             }
             description="Pedir café no debería ser un trámite. Por eso lo hacemos tan simple como pedirle al panadero del barrio."
           />
-        </Reveal>
-
-        <ol className="mt-16 grid gap-6 md:grid-cols-3 md:gap-8">
-          {steps.map((step, i) => (
-            <Reveal as="li" key={step.number} delay={i * 120}>
-              <article className="group relative h-full rounded-3xl border border-(--sand) bg-(--white)/40 p-8 transition-colors duration-300 hover:bg-(--cream) hover:border-(--green)">
-                <span className="font-(family-name:--font-display) text-5xl md:text-6xl text-(--orange) leading-none">
-                  {step.number}
-                </span>
-                <div className="mt-6 text-(--green) transition-transform duration-300 group-hover:-translate-y-1">
-                  {step.icon}
-                </div>
-                <h3 className="mt-5 font-(family-name:--font-display) text-2xl text-(--coffee)">
-                  {step.title}
-                </h3>
-                <p className="mt-3 text-sm md:text-base text-(--coffee)/75 leading-relaxed">
-                  {step.description}
-                </p>
-              </article>
-            </Reveal>
-          ))}
-        </ol>
-      </Container>
-    </Section>
+        </Container>,
+        <Container key="cards">
+          <h3 className="mb-10 md:mb-12 font-(family-name:--font-display) text-3xl md:text-5xl text-center text-(--coffee)">
+            De tu mensaje a{" "}
+            <em className="not-italic text-(--green) font-semibold">tu taza</em>.
+          </h3>
+          <ol className="grid gap-6 md:grid-cols-3 md:gap-8">
+            {steps.map((step) => (
+              <li key={step.number}>
+                <article className="group relative h-full rounded-3xl border border-(--sand) bg-(--white)/40 p-8 transition-colors duration-300 hover:bg-(--cream) hover:border-(--green)">
+                  <span className="font-(family-name:--font-display) text-5xl md:text-6xl text-(--orange) leading-none">
+                    {step.number}
+                  </span>
+                  <div className="mt-6 text-(--green) transition-transform duration-300 group-hover:-translate-y-1">
+                    {step.icon}
+                  </div>
+                  <h3 className="mt-5 font-(family-name:--font-display) text-2xl text-(--coffee)">
+                    {step.title}
+                  </h3>
+                  <p className="mt-3 text-sm md:text-base text-(--coffee)/75 leading-relaxed">
+                    {step.description}
+                  </p>
+                </article>
+              </li>
+            ))}
+          </ol>
+        </Container>,
+      ]}
+    />
   )
 }

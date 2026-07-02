@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from "react"
-import Section, { Container } from "../_components/Section"
+import ScrollStory from "../_components/ScrollStory"
+import { Container } from "../_components/Section"
 import SectionHeader from "../_components/SectionHeader"
-import Reveal from "../_components/Reveal"
 
 // ── SVG icon primitives ──────────────────────────────────────────────────────
 const Icon = ({ children }: { children: React.ReactNode }) => (
@@ -92,9 +92,9 @@ export default function Benefits() {
   const data = profiles[active]
 
   return (
-    <Section tone="cream" id="Beneficios">
-      <Container>
-        <Reveal>
+    <ScrollStory tone="cream" prevTone="coffee" id="Beneficios"
+      steps={[
+        <Container key="header">
           <SectionHeader
             eyebrow="Beneficios"
             accentColor="var(--green)"
@@ -106,84 +106,82 @@ export default function Benefits() {
             }
             description="Hay café que se produce. Y hay café que se cuida. El nuestro viene de fincas lojanas donde cada grano pasa por manos que llevan años aprendiendo qué hace grande a un café."
           />
-        </Reveal>
-
-        {/* Tres razones */}
-        <ul className="mt-16 grid gap-6 md:grid-cols-3 md:gap-8">
-          {reasons.map((r, i) => (
-            <Reveal as="li" key={r.title} delay={i * 100}>
-              <article className="h-full rounded-3xl border border-(--sand) bg-(--milk) p-7">
-                <span className="font-(family-name:--font-display) text-4xl text-(--orange)">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="mt-4 font-(family-name:--font-display) text-xl md:text-2xl text-(--coffee)">
-                  {r.title}
-                </h3>
-                <p className="mt-3 text-sm md:text-base text-(--coffee)/75 leading-relaxed">
-                  {r.description}
-                </p>
-              </article>
-            </Reveal>
-          ))}
-        </ul>
-
-        {/* Perfiles intercambiables */}
-        <div className="mt-24">
-          <Reveal>
-            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-              <div>
-                <span className="text-xs uppercase tracking-[0.25em] font-semibold text-(--green)">
-                  Para quién
-                </span>
-                <h3 className="mt-2 font-(family-name:--font-display) text-2xl md:text-3xl text-(--coffee) max-w-lg">
-                  Un mismo café que se acomoda a tu día.
-                </h3>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {(Object.keys(profiles) as ProfileKey[]).map((key) => (
-                  <button
-                    key={key}
-                    type="button"
-                    onClick={() => setActive(key)}
-                    className={`rounded-full px-5 py-2 text-sm font-medium transition-all duration-300 cursor-pointer ${
-                      active === key
-                        ? "bg-(--green) text-(--cream)"
-                        : "bg-(--milk) text-(--coffee) border border-(--sand) hover:border-(--green)/50"
-                    }`}
-                  >
-                    {profiles[key].label}
-                  </button>
-                ))}
-              </div>
+        </Container>,
+        <Container key="reasons">
+          <h3 className="mb-10 md:mb-12 font-(family-name:--font-display) text-3xl md:text-5xl text-center text-(--coffee)">
+            Lo que hace especial a este{" "}
+            <em className="not-italic italic text-(--green) font-semibold">tueste</em>.
+          </h3>
+          <ul className="grid gap-6 md:grid-cols-3 md:gap-8">
+            {reasons.map((r, i) => (
+              <li key={r.title}>
+                <article className="h-full rounded-3xl border border-(--sand) bg-(--milk) p-7">
+                  <span className="font-(family-name:--font-display) text-4xl text-(--orange)">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-4 font-(family-name:--font-display) text-xl md:text-2xl text-(--coffee)">
+                    {r.title}
+                  </h3>
+                  <p className="mt-3 text-sm md:text-base text-(--coffee)/75 leading-relaxed">
+                    {r.description}
+                  </p>
+                </article>
+              </li>
+            ))}
+          </ul>
+        </Container>,
+        <Container key="profiles">
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div>
+              <span className="text-xs uppercase tracking-[0.25em] font-semibold text-(--green)">
+                Para quién
+              </span>
+              <h3 className="mt-2 font-(family-name:--font-display) text-2xl md:text-3xl text-(--coffee) max-w-lg">
+                Un mismo café que se acomoda a tu día.
+              </h3>
             </div>
-          </Reveal>
-
-          <Reveal delay={100}>
-            <div className="mt-10 rounded-3xl border border-(--sand) bg-(--milk) p-7 md:p-10">
-              <p className="text-sm font-semibold uppercase tracking-widest text-(--orange)">
-                {data.subtitle}
-              </p>
-              <ul className="mt-8 grid gap-6 md:grid-cols-2">
-                {data.points.map((p) => (
-                  <li key={p.title} className="flex gap-4 text-(--green)">
-                    {p.icon}
-                    <div>
-                      <h4 className="font-(family-name:--font-display) text-lg text-(--coffee)">
-                        {p.title}
-                      </h4>
-                      <p className="mt-1 text-sm text-(--coffee)/75 leading-relaxed">{p.desc}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-8 rounded-2xl bg-(--green) px-5 py-4 text-(--cream)">
-                <p className="text-xs uppercase tracking-widest font-semibold text-(--orange)">Consejo</p>
-                <p className="mt-1 text-sm md:text-base leading-relaxed">{data.tip}</p>
-              </div>
+            <div className="flex flex-wrap gap-2">
+              {(Object.keys(profiles) as ProfileKey[]).map((key) => (
+                <button
+                  key={key}
+                  type="button"
+                  onClick={() => setActive(key)}
+                  className={`rounded-full px-5 py-2 text-sm font-medium transition-all duration-300 cursor-pointer ${
+                    active === key
+                      ? "bg-(--green) text-(--cream)"
+                      : "bg-(--milk) text-(--coffee) border border-(--sand) hover:border-(--green)/50"
+                  }`}
+                >
+                  {profiles[key].label}
+                </button>
+              ))}
             </div>
-          </Reveal>
-        </div>
-      </Container>
-    </Section>
+          </div>
+
+          <div className="mt-8 rounded-3xl border border-(--sand) bg-(--milk) p-7 md:p-10">
+            <p className="text-sm font-semibold uppercase tracking-widest text-(--orange)">
+              {data.subtitle}
+            </p>
+            <ul className="mt-8 grid gap-6 md:grid-cols-2">
+              {data.points.map((p) => (
+                <li key={p.title} className="flex gap-4 text-(--green)">
+                  {p.icon}
+                  <div>
+                    <h4 className="font-(family-name:--font-display) text-lg text-(--coffee)">
+                      {p.title}
+                    </h4>
+                    <p className="mt-1 text-sm text-(--coffee)/75 leading-relaxed">{p.desc}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8 rounded-2xl bg-(--green) px-5 py-4 text-(--cream)">
+              <p className="text-xs uppercase tracking-widest font-semibold text-(--orange)">Consejo</p>
+              <p className="mt-1 text-sm md:text-base leading-relaxed">{data.tip}</p>
+            </div>
+          </div>
+        </Container>,
+      ]}
+    />
   )
 }
