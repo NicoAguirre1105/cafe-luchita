@@ -87,7 +87,7 @@ export default function CoffeeProcess() {
             title={
               <>
                 Cada taza cuenta{" "}
-                <em className="not-italic italic text-(--orange) font-semibold">seis pasos</em>.
+                <em className="not-italic text-(--orange) font-semibold">seis pasos</em>.
               </>
             }
             description="Detrás de cada funda hay un proceso largo y cuidadoso. Aquí puedes ver cómo el grano recorre el camino desde la finca hasta llegar a tu hogar."
@@ -97,7 +97,7 @@ export default function CoffeeProcess() {
         <Container size="wide" key="process">
           <h3 className="mb-8 md:mb-10 font-(family-name:--font-display) text-3xl md:text-5xl text-center text-(--cream)">
             Sigue el recorrido del{" "}
-            <em className="not-italic italic text-(--orange) font-semibold">grano</em>.
+            <em className="not-italic text-(--orange) font-semibold">grano</em>.
           </h3>
           {/* Step tabs — horizontal scrollable row */}
           <div className="-mx-5 md:mx-0">
