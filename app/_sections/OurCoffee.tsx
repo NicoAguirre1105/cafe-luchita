@@ -21,7 +21,7 @@ const roasts = [
     temp: "El nuestro",
     body: "Equilibrio perfecto entre acidez y cuerpo",
     description:
-      "El más versátil. Es el que tostamos: deja hablar al origen sin perder dulzura ni redondez en la taza.",
+      "El más versátil. Deja hablar al origen sin perder dulzura ni cuerpo en la taza.",
     uses: "Cafeterías de especialidad, bebidas con leche, blends",
     highlight: true,
   },
@@ -73,17 +73,16 @@ export function OurCoffeeOrigin() {
                   <p>
                     En el sur del Ecuador, entre los valles que rodean Vilcabamba, se eleva
                     el cerro de Cararango. Ahí, a <strong className="text-(--coffee)">1.700 m.s.n.m.</strong>,
-                    nuestras fincas aprovechan un clima subtropical único.
+                    los cafetales aprovechan un clima subtropical único.
                   </p>
                   <p>
                     Nuestras fincas comparten tierra con <strong className="text-(--green)">guineos,
-                    caña de azúcar y árboles frutales</strong>. Menos estrés para la planta, más
-                    complejidad de sabor en tu taza.
+                    caña de azúcar y árboles frutales</strong>, éste es el secreto de un café especial.
                   </p>
                 </div>
 
                 <dl className="mt-8 grid grid-cols-3 gap-4 border-t border-(--sand) pt-5">
-                  <Fact term="1.700+" desc="m.s.n.m." />
+                  <Fact term="1.700" desc="m.s.n.m." />
                   <Fact term="Arábigo" desc="de altura" />
                   <Fact term="Policultivo" desc="bajo sombra" />
                 </dl>
@@ -124,16 +123,16 @@ export function RoastLevels() {
               title={
                 <>
                   Cada tueste cuenta una{" "}
-                  <em className="not-italic italic text-(--green) font-semibold">historia</em> distinta.
+                  <em className="not-italic text-(--green) font-semibold">historia</em> distinta.
                 </>
               }
-              description="Nosotros nos quedamos con el tueste medio porque es donde el origen todavía habla. Pero aquí está el mapa completo, por si quieres entender la diferencia."
+              description="Nosotros nos quedamos con el tueste medio porque es donde el origen todavía habla. Pero aquí está el mapa completo para entender la diferencia."
             />
           </Container>,
           <Container size="wide" key="cards">
             <h3 className="mb-10 md:mb-12 font-(family-name:--font-display) text-3xl md:text-5xl text-center text-(--coffee)">
               Del más claro al más{" "}
-              <em className="not-italic italic text-(--green) font-semibold">intenso</em>.
+              <em className="not-italic text-(--green) font-semibold">intenso</em>.
             </h3>
             <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
               {roasts.map((roast) => (
@@ -210,11 +209,11 @@ export function GrindTypes() {
               title={
                 <>
                   El molido depende del{" "}
-                  <em className="not-italic italic text-(--green) font-semibold">método</em>,
+                  <em className="not-italic text-(--green) font-semibold">método</em>,
                   no del gusto.
                 </>
               }
-              description="Cada método de preparación tiene su molido ideal. Nuestro café molido viene en punto medio — el más versátil para cafetera, filtro y prensa francesa."
+              description="Cada método de preparación tiene su molido ideal. Nuestro café tiene un punto medio. Para preparaciones especiales te ofrecemos café en grano, tú decides."
             />
           </Container>,
           <Container key="grind">

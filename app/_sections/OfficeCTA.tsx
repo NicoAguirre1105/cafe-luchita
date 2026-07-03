@@ -9,7 +9,7 @@ const WHATSAPP_OFFICE =
   "https://api.whatsapp.com/send?phone=593984634581&text=Hola%20Caf%C3%A9%20Luchita,%20me%20interesa%20conocer%20sus%20convenios%20para%20oficinas%20y%20espacios%20de%20trabajo."
 
 const benefits = [
-  "Entregas periódicas sin que tengas que recordar",
+  "Entregas periódicas",
   "Precios preferenciales según volumen mensual",
   "Café ecuatoriano de origen para tu equipo o tus clientes",
 ]
@@ -32,9 +32,8 @@ export default function OfficeCTA() {
                 </em>
               </h2>
               <p className="text-base md:text-lg leading-relaxed text-(--cream)/80 max-w-xl">
-                Tenemos convenios pensados para equipos de 5 a 30 personas y para
-                barras de especialidad, en cualquier ciudad del país. Entregas regulares, factura, y un café que
-                ya ofrece algo distinto sin que tengas que explicar mucho.
+                Tenemos convenios de ventas al por mayor para oficinas, barras de especialidad y cafeterías en cualquier ciudad del país. Entregas regulares, factura y un café que
+                ya ofrece algo distinto sin que tengas mucho que explicar.
               </p>
 
               <ul className="mt-2 flex flex-col gap-3">
@@ -64,8 +63,8 @@ export default function OfficeCTA() {
             <div className="hidden md:block">
               <div className="relative aspect-square rounded-3xl border border-(--cream)/15 bg-(--cream)/5 p-10">
                 <div className="grid grid-cols-2 gap-6 h-full">
-                  <Stat number="5–30" label="personas por convenio" />
-                  <Stat number="Sem." label="o quincenal" />
+                  <Stat number="Ventas por mayor" label="para tu comodidad" />
+                  <Stat number="Entrega periódica" label="semanal, quincenal o mensual" />
                   <Stat number="Nacional" label="cobertura de envíos" />
                   <Stat number="100%" label="café ecuatoriano" />
                 </div>

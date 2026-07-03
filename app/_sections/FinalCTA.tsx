@@ -12,7 +12,7 @@ export default function FinalCTA({
   handleContactModal: () => void
 }) {
   return (
-    <ScrollChapter tone="sand"
+    <ScrollChapter tone="cream"
       steps={[
         <Container key="cta">
           <div className="relative flex flex-col items-center text-center gap-8 max-w-3xl mx-auto">
