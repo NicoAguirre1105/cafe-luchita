@@ -19,11 +19,10 @@ export default function FinalCTA({
             <BeanIcon size={56} className="text-(--coffee)" />
             <h2 className="font-(family-name:--font-display) text-4xl md:text-6xl leading-[1.05] font-medium text-(--coffee)">
               Tu próxima taza está a un{" "}
-              <em className="not-italic italic text-(--green-deep) font-semibold">mensaje</em> de distancia.
+              <em className="not-italic text-(--green-deep) font-semibold">mensaje</em> de distancia.
             </h2>
             <p className="text-base md:text-lg text-(--coffee)/80 max-w-xl leading-relaxed">
-              Pídelo para esta semana, para tu casa, tu oficina o tu familia. Lo preparamos,
-              lo empacamos y lo llevamos. Tú solo decides cómo lo vas a preparar.
+              Pídelo hoy para tu casa, oficina o negocio. Nosotros lo empacamos y lo llevamos. Tú solo decides cómo lo vas a preparar.
             </p>
             <div className="flex flex-wrap justify-center gap-3 pt-2">
               <Button variant="secondary" size="lg" onClick={handleContactModal}>

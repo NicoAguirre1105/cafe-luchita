@@ -7,9 +7,15 @@ import { Container } from "../_components/Section"
 const timeline = [
   {
     year: "1958",
-    title: "Una familia, una tradición",
+    title: "Valladolid. Una familia, una tradición",
     description:
-      "Se constituye la base económica y de unión de la familia alrededor del café en las tierras de Cararango.",
+      "El cultivo de café constituye la base económica y de unión familiar alrededor del café en las tierras de Valladolid.",
+  },
+  {
+    year: "1995",
+    title: "Cararango, el primer paso de un sueño",
+    description:
+      "Allí, entre montañas y esfuerzo, comenzamos a escribir el capítulo del cultivo de nuestro café.",
   },
   {
     year: "2024",
@@ -37,15 +43,15 @@ export default function AboutUs() {
               </span>
               <h2 className="mt-4 font-(family-name:--font-display) text-3xl md:text-5xl leading-[1.1] font-medium text-(--cream)">
                 Una historia de{" "}
-                <em className="not-italic italic text-(--orange) font-semibold">familia</em>,
+                <em className="not-italic text-(--orange) font-semibold">familia</em>,
                 campo y sabor.
               </h2>
               <p className="mt-6 text-base md:text-lg leading-relaxed text-(--cream)/80 max-w-xl">
                 <strong className="text-(--cream)">Café Luchita</strong> nace para fortalecer
-                una tradición familiar. Lo que empezó en 1958 como sustento, sigue siendo hoy
-                el mismo gesto: cuidar el café que cuida a los nuestros.
+                una tradición familiar. Lo que empezó en 1958 como sustento, sigue teniendo hoy
+                el mismo objetivo: cuidar el café que cuida a los nuestros.
               </p>
-              <p className="mt-4 text-base leading-relaxed text-(--cream)/70 max-w-xl italic font-(family-name:--font-display)">
+              <p className="mt-4 text-2xl font-semibold text-(--cream)/70 max-w-xl italic font-(family-name:--font-display)">
                 &ldquo;Agradecemos a todos los caficultores de Cararango por su dedicación y
                 esmero.&rdquo;
               </p>

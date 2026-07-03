@@ -22,7 +22,7 @@ const steps = [
     description:
       "El grano es conservado durante horas controladas. Este proceso descompone la pulpa y activa los compuestos que dan carácter y complejidad a la taza.",
     image: "/img/cafe_natural.jpeg",
-    detail: "Proceso húmedo · 18–36 horas",
+    detail: "Proceso controlado · 4-6 días",
   },
   {
     number: "03",
@@ -30,7 +30,7 @@ const steps = [
     description:
       "Extendidos bajo el sol de Vilcabamba, los granos pierden humedad lentamente. El secado natural preserva los azúcares y aromas que el tueste luego revelará.",
     image: "/img/carrousel_1.jpeg",
-    detail: "Secado solar · 10–20 días",
+    detail: "Secado solar · 15–20 días",
   },
   {
     number: "04",
@@ -38,7 +38,7 @@ const steps = [
     description:
       "Se retira la cáscara seca que protegió al grano durante el proceso. Lo que queda es el grano verde, listo para ser clasificado y enviado a tostar.",
     image: "/img/carrousel_2.jpeg",
-    detail: "Descascarado · Clasificación por tamaño",
+    detail: "Trillado · Clasificación por tamaño",
   },
   {
     number: "05",
@@ -52,7 +52,7 @@ const steps = [
     number: "06",
     name: "Molido",
     description:
-      "El café molido se empaca de inmediato en nuestra bolsa con válvula degasificadora. Desde el tostador hasta tu puerta, sin perder nada del aroma.",
+      "El café molido se empaca de inmediato en nuestra bolsa con válvula degasificadora. Desde el tostador hasta tu puerta, sin perder su aroma.",
     image: "/img/cafe_molido.jpg",
     detail: "Molido medio · Empaque hermético",
   },

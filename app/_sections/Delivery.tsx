@@ -50,11 +50,11 @@ export default function Delivery() {
                 Envíos a domicilio
               </span>
               <h2 className="mt-4 font-(family-name:--font-display) text-3xl md:text-5xl leading-[1.1] font-medium">
-                Tu café, a tu{" "}
+              <em className="font-bold">CAFÉ LUCHITA</em> va a tu{" "}
                 <em className="not-italic text-(--orange) font-semibold">puerta</em>.
               </h2>
               <p className="mt-5 text-base md:text-lg leading-relaxed text-(--cream)/80 max-w-md">
-                Enviamos a nivel nacional. Coordinamos contigo y nos encargamos del
+                Envíos a nivel nacional. Coordinamos contigo y nos encargamos del
                 resto — desde la finca a tu hogar.
               </p>
             </div>

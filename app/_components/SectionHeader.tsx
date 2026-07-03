@@ -29,9 +29,9 @@ export default function SectionHeader({
         {title}
       </h2>
       {description && (
-        <p className="text-base md:text-lg leading-relaxed opacity-80 max-w-xl">
+        <div className="flex flex-col gap-2 text-base md:text-lg leading-relaxed opacity-80 max-w-xl">
           {description}
-        </p>
+        </div>
       )}
     </div>
   )

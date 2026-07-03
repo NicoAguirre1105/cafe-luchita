@@ -31,7 +31,7 @@ const reasons = [
   {
     title: "El sabor del origen, intacto",
     description:
-      "El tueste medio es el único punto donde el grano todavía habla. Sientes Loja en la taza: dulce, redondo, con ese caramelo suave que no necesita azúcar.",
+      "El tueste medio es el único punto donde el grano todavía habla. Sientes Loja en la taza: dulce, redondo, con ese sabor suave que no necesita azúcar.",
   },
   {
     title: "Bien por dentro, rico por fuera",
@@ -99,17 +99,25 @@ export default function Benefits() {
             accentColor="var(--green)"
             title={
               <>
-                Por qué el{" "}
-                <em className="not-italic italic text-(--green) font-semibold">tueste medio</em>.
+                ¿Por qué{" "}
+                <em className="not-italic text-(--green) font-semibold">tueste medio</em>?
               </>
             }
-            description="Hay café que se produce. Y hay café que se cuida. El nuestro viene de fincas lojanas donde cada grano pasa por manos que llevan años aprendiendo qué hace grande a un café."
+            description={
+              <>
+                <p>Hay café que se produce y hay café que se cuida.</p>
+                <p>
+                  <em className="not-italic font-semibold text-(--orange-dark) text-xl">CAFÉ LUCHITA</em> viene de fincas lojanas donde cada grano pasa por manos que llevan años
+                  aprendiendo lo que hace único al café.
+                </p>
+              </>
+            }
           />
         </Container>,
         <Container key="reasons">
           <h3 className="mb-10 md:mb-12 font-(family-name:--font-display) text-3xl md:text-5xl text-center text-(--coffee)">
             Lo que hace especial a este{" "}
-            <em className="not-italic italic text-(--green) font-semibold">tueste</em>.
+            <em className="not-italic text-(--green) font-semibold">tueste</em>.
           </h3>
           <ul className="grid gap-6 md:grid-cols-3 md:gap-8">
             {reasons.map((r, i) => (

@@ -213,7 +213,12 @@ export function GrindTypes() {
                   no del gusto.
                 </>
               }
-              description="Cada método de preparación tiene su molido ideal. Nuestro café tiene un punto medio. Para preparaciones especiales te ofrecemos café en grano, tú decides."
+              description={
+                <>
+                  <p>Cada método de preparación tiene su molido ideal. Nuestro café tiene un punto medio. Para preparaciones especiales te ofrecemos café en grano.</p>
+                  <p className="font-semibold text-(--green) text-2xl">Tú decides.</p>
+                </>
+              }
             />
           </Container>,
           <Container key="grind">
