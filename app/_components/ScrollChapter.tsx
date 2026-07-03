@@ -22,11 +22,28 @@ export default function ScrollChapter({ id, tone = "milk", steps, stepVh = 65 }:
   const stepRefs = useRef<(HTMLDivElement | null)[]>([])
 
   useLayoutEffect(() => {
+    // Un paso puede marcar un tramo interno "scrubeable": un contenedor con
+    // [data-scrub-viewport] (altura fija, overflow oculto) que envuelve un
+    // [data-scrub-track] más alto que su contenido visible. Si existe, el
+    // tiempo de lectura del paso (stepVh) se usa para desplazar el track hacia
+    // arriba en vez de quedar estático — el "scroll interno" queda atado al
+    // scroll de la sección en vez de a un contenedor con su propio overflow.
+    const scrubEls = stepRefs.current.map((stepEl) => {
+      if (!stepEl) return undefined
+      const viewport = stepEl.querySelector<HTMLElement>("[data-scrub-viewport]")
+      const track = viewport?.querySelector<HTMLElement>("[data-scrub-track]")
+      if (!viewport || !track) return undefined
+      const distance = track.scrollHeight - viewport.clientHeight
+      if (distance <= 0) return undefined
+      return { el: track, distance }
+    })
+
     ctx?.register({
       tone,
       id,
       stepVh,
       stepEls: stepRefs.current.filter(Boolean) as HTMLDivElement[],
+      scrubEls,
     })
     // Se registra una sola vez al montar — el orden de montaje (determinístico,
     // ya que el árbol de secciones es estático) define el orden de los capítulos.

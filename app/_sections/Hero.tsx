@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from "react"
+import { useLayoutEffect, useRef } from "react"
 import Image from "next/image"
 import { Button, ButtonLink } from "../_components/Button"
 import BeanIcon from "../_components/BeanIcon"
@@ -17,9 +17,28 @@ export default function Hero({
   const sectionRef = useRef<HTMLElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const indicatorRef = useRef<HTMLDivElement>(null)
+  const statsRef = useRef<HTMLDivElement>(null)
+  const registroRef = useRef<HTMLDivElement>(null)
+
+  // Alinea el registro sanitario (horizontalmente) con el borde derecho del
+  // bloque de stats (Altitud / Variedad / Perfil) — el contenido del Hero está
+  // centrado dentro de max-w-5xl, así que ese borde no coincide con ningún
+  // valor fijo en CSS, hay que medirlo.
+  useLayoutEffect(() => {
+    const sync = () => {
+      if (!sectionRef.current || !statsRef.current || !registroRef.current) return
+      const sectionRect = sectionRef.current.getBoundingClientRect()
+      const statsRect = statsRef.current.getBoundingClientRect()
+      registroRef.current.style.right = `${sectionRect.right - statsRect.right}px`
+    }
+
+    sync()
+    window.addEventListener("resize", sync)
+    return () => window.removeEventListener("resize", sync)
+  }, [])
 
   useGSAP(() => {
-    const targets = [contentRef.current, indicatorRef.current].filter(Boolean)
+    const targets = [contentRef.current, indicatorRef.current, registroRef.current].filter(Boolean)
 
     gsap.timeline({
       scrollTrigger: {
@@ -86,7 +105,7 @@ export default function Hero({
             y con envío a todo el Ecuador.
           </p>
 
-          <div className="border-t border-(--cream)/15 pt-5 grid grid-cols-3 gap-4 shrink-0 min-w-[260px]">
+          <div ref={statsRef} className="border-t border-(--cream)/15 pt-5 grid grid-cols-3 gap-4 shrink-0 min-w-[260px]">
             <Stat value="1.700 m" label="Altitud" />
             <Stat value="Arábigo" label="Variedad" />
             <Stat value="Tueste medio" label="Perfil" />
@@ -111,6 +130,14 @@ export default function Hero({
             Ver presentaciones →
           </ButtonLink>
         </div>
+      </div>
+
+      {/* Registro sanitario — abajo, alineado horizontalmente con el bloque de stats */}
+      <div
+        ref={registroRef}
+        className="absolute bottom-14 right-4 md:bottom-16 md:right-10 z-10 text-[10px] md:text-xs text-(--cream)/35 tracking-wide"
+      >
+        Registro sanitario: RSA-58213-INHQC
       </div>
 
       {/* Scroll indicator — arrow */}

@@ -6,14 +6,23 @@ import ScrollChapter from "../_components/ScrollChapter"
 import { Container } from "../_components/Section"
 import SectionHeader from "../_components/SectionHeader"
 
+interface Step {
+  number: string
+  name: string
+  description: string
+  image: string
+  video?: string
+  detail: string
+}
+
 // TODO: reemplazar las imágenes con fotos reales de cada fase
-const steps = [
+const steps: Step[] = [
   {
     number: "01",
     name: "Cosecha",
     description:
       "Los granos se seleccionan a mano, uno por uno, escogiendo solo los que llegaron a su punto exacto de madurez. En Cararango, la cosecha es un acto de paciencia.",
-    image: "/img/about_1.jpeg",
+    image: "/img/cosecha_img.jpeg",
     detail: "Selección manual · Grano a grano",
   },
   {
@@ -21,7 +30,7 @@ const steps = [
     name: "Fermentación",
     description:
       "El grano es conservado durante horas controladas. Este proceso descompone la pulpa y activa los compuestos que dan carácter y complejidad a la taza.",
-    image: "/img/cafe_natural.jpeg",
+    image: "/img/fermentacion_img.png",
     detail: "Proceso controlado · 4-6 días",
   },
   {
@@ -29,7 +38,7 @@ const steps = [
     name: "Secado",
     description:
       "Extendidos bajo el sol de Vilcabamba, los granos pierden humedad lentamente. El secado natural preserva los azúcares y aromas que el tueste luego revelará.",
-    image: "/img/carrousel_1.jpeg",
+    image: "/img/secado.jpeg",
     detail: "Secado solar · 15–20 días",
   },
   {
@@ -38,6 +47,7 @@ const steps = [
     description:
       "Se retira la cáscara seca que protegió al grano durante el proceso. Lo que queda es el grano verde, listo para ser clasificado y enviado a tostar.",
     image: "/img/carrousel_2.jpeg",
+    video: "/video/pilado.mp4",
     detail: "Trillado · Clasificación por tamaño",
   },
   {
@@ -46,6 +56,7 @@ const steps = [
     description:
       "El grano verde entra al tostador y en minutos se transforma. Nuestro tueste medio preserva los sabores del origen — dulce, complejo, sin amargor.",
     image: "/img/carrousel_3.jpeg",
+    video: "/video/tueste.mp4",
     detail: "Tueste medio",
   },
   {
@@ -54,9 +65,14 @@ const steps = [
     description:
       "El café molido se empaca de inmediato en nuestra bolsa con válvula degasificadora. Desde el tostador hasta tu puerta, sin perder su aroma.",
     image: "/img/cafe_molido.jpg",
+    video: "/video/molido.mp4",
     detail: "Molido medio · Empaque hermético",
   },
 ]
+
+export const processVideos = steps
+  .map((s) => s.video)
+  .filter((v): v is string => Boolean(v))
 
 export default function CoffeeProcess() {
   const [active, setActive] = useState(0)
@@ -124,13 +140,26 @@ export default function CoffeeProcess() {
             >
               {/* Image */}
               <div className="relative min-h-[220px] md:min-h-0">
-                <Image
-                  src={step.image}
-                  alt={step.name}
-                  fill
-                  sizes="(min-width: 768px) 50vw, 100vw"
-                  className="object-cover"
-                />
+                {step.video ? (
+                  <video
+                    key={step.number}
+                    src={step.video}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    controls={false}
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                ) : (
+                  <Image
+                    src={step.image}
+                    alt={step.name}
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                )}
                 <div className="absolute inset-0 bg-(--coffee)/25" />
                 <span className="absolute bottom-4 left-5 font-(family-name:--font-display) text-6xl text-(--cream)/12 font-bold leading-none select-none">
                   {step.number}

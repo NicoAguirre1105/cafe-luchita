@@ -90,9 +90,9 @@ export function OurCoffeeOrigin() {
 
               <div className="order-1 md:order-2">
                 <div className="relative md:max-w-[85%] md:mx-auto">
-                  <div className="relative aspect-[16/10] md:aspect-[4/4] overflow-hidden rounded-3xl border border-(--sand)">
+                  <div className="relative aspect-16/10 md:aspect-9/10 overflow-hidden rounded-3xl border border-(--sand)">
                     <Image
-                      src="/img/cafe_natural.jpeg"
+                      src="/img/nuestro.jpeg"
                       alt="Café natural de Cararango"
                       fill
                       sizes="(min-width: 768px) 50vw, 100vw"
@@ -100,8 +100,8 @@ export function OurCoffeeOrigin() {
                     />
                   </div>
                   <div className="absolute -bottom-4 -left-4 hidden md:block rounded-2xl bg-(--green) px-6 py-4 text-(--cream) shadow-[0_15px_40px_-15px_rgba(44,26,14,0.4)]">
-                    <p className="text-xs uppercase tracking-widest opacity-70">Envíos</p>
-                    <p className="font-(family-name:--font-display) text-2xl">Nacional</p>
+                    <p className="text-xs uppercase tracking-widest opacity-70">FLOR</p>
+                    <p className="font-(family-name:--font-display) text-2xl">DE CAFÉ</p>
                   </div>
                 </div>
               </div>

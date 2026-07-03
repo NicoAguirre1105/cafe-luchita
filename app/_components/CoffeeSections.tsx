@@ -16,6 +16,8 @@ export interface ChapterData {
   id?: string
   stepVh: number
   stepEls: HTMLDivElement[]
+  /** por índice de paso: tramo interno a desplazar durante el tiempo de lectura (ver ScrollChapter) */
+  scrubEls?: ({ el: HTMLElement; distance: number } | undefined)[]
 }
 
 interface CoffeeSectionsContextValue {
@@ -27,12 +29,14 @@ export const CoffeeSectionsContext = createContext<CoffeeSectionsContextValue | 
 interface ScheduleOp {
   at: number
   duration: number
-  kind: "stepIn" | "stepOut" | "chapterChange"
-  el?: HTMLDivElement
+  kind: "stepIn" | "stepOut" | "chapterChange" | "scrub"
+  el?: HTMLElement
   /** índice de capítulo al que se entra avanzando (el anterior es chapterIndex - 1) */
   chapterIndex?: number
   /** solo en el primer stepIn de un capítulo con id — para registrar la label de navegación */
   chapterId?: string
+  /** solo en "scrub" — distancia en px a desplazar el tramo interno */
+  distance?: number
 }
 
 // Recorre los capítulos y arma la línea de tiempo (en vh) del timeline maestro:
@@ -50,7 +54,13 @@ function buildSchedule(chapters: ChapterData[]) {
     cursor += FADE_VH
 
     for (let i = 0; i < n; i++) {
-      cursor += chapter.stepVh // tiempo de lectura, contenido estático
+      const readStart = cursor
+      cursor += chapter.stepVh // tiempo de lectura, contenido estático (salvo scrub)
+
+      const scrub = chapter.scrubEls?.[i]
+      if (scrub) {
+        ops.push({ at: readStart, duration: chapter.stepVh, kind: "scrub", el: scrub.el, distance: scrub.distance })
+      }
 
       if (i < n - 1) {
         ops.push({ at: cursor, duration: FADE_VH, kind: "stepOut", el: els[i] })
@@ -122,6 +132,8 @@ export default function CoffeeSections({ children }: { children: React.ReactNode
           }
         } else if (op.kind === "stepOut") {
           tl.to(op.el!, { autoAlpha: 0, y: -28, duration: op.duration }, op.at)
+        } else if (op.kind === "scrub") {
+          tl.fromTo(op.el!, { y: 0 }, { y: -op.distance!, duration: op.duration, ease: "none" }, op.at)
         } else {
           // GSAP solo decide CUÁNDO cambia el capítulo activo (según scroll y
           // dirección) — el color en sí lo interpola la transición CSS nativa

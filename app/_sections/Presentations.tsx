@@ -24,25 +24,25 @@ const products: Product[] = [
     weight: "250 g",
     format: "Molido medio",
     description: "El tamaño justo para probar o para quienes viven solos. Listo para cafetera o filtro.",
-    price: "$--.--",
-    image: "/img/cafe_molido.jpg",
-    badge: "Más pedido",
+    price: "$4.00",
+    image: "/img/pres1.png",
   },
   {
     name: "Café molido",
     weight: "450 g",
     format: "Molido medio",
     description: "Nuestro formato familiar. Suficiente para varias semanas de rituales lentos en casa.",
-    price: "$--.--",
-    image: "/img/cafe_molido.jpg",
+    price: "$7.00",
+    image: "/img/pres3.png",
+    badge: "Más pedido",
   },
   {
     name: "Café en grano",
     weight: "450 g",
     format: "Grano entero",
     description: "Para quienes muelen al momento y persiguen el aroma más fresco posible.",
-    price: "$--.--",
-    image: "/img/cafe_grano.jpg",
+    price: "$10.00",
+    image: "/img/pres2.png",
   },
   {
     name: "Edición Premium",
@@ -50,6 +50,7 @@ const products: Product[] = [
     format: "Próximamente",
     description: "Estamos preparando algo especial. Lotes selectos, tueste cuidado al gramo.",
     price: "Próximamente",
+    image: "/img/pres4.png",
     upcoming: true,
   },
 ]
@@ -69,7 +70,7 @@ export default function Presentations({
             title={
               <>
                 Escoge la que va con tu{" "}
-                <em className="not-italic italic text-(--green) font-semibold">ritmo</em>.
+                <em className="not-italic text-(--green) font-semibold">ritmo</em>.
               </>
             }
             description="Todas las presentaciones tienen el mismo grano, el mismo tueste medio y el mismo cuidado. Solo cambia el formato."
@@ -78,7 +79,7 @@ export default function Presentations({
         <Container size="wide" key="cards">
           <h3 className="mb-10 md:mb-12 font-(family-name:--font-display) text-3xl md:text-5xl text-center text-(--coffee)">
             Un café, cuatro formas de{" "}
-            <em className="not-italic italic text-(--green) font-semibold">vivirlo</em>.
+            <em className="not-italic text-(--green) font-semibold">vivirlo</em>.
           </h3>
           <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {products.map((product, i) => (
@@ -96,16 +97,19 @@ export default function Presentations({
 function ProductCard({ product, onContact }: { product: Product; onContact: () => void }) {
   return (
     <article
-      className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border transition-all duration-300 hover:-translate-y-1 ${
-        product.upcoming
-          ? "border-dashed border-(--bark)/30 bg-(--milk)"
-          : "border-(--sand) bg-(--milk) hover:border-(--green) hover:shadow-[0_10px_40px_-20px_rgba(44,26,14,0.4)]"
-      }`}
+      className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-(--sand) bg-(--milk) transition-all duration-300 hover:-translate-y-1 hover:border-(--green) hover:shadow-[0_10px_40px_-20px_rgba(44,26,14,0.4)]"
     >
       {/* Badge */}
       {product.badge && (
         <span className="absolute top-3 right-3 z-10 rounded-full bg-(--orange) px-3 py-1 text-xs font-semibold text-(--coffee)">
           {product.badge}
+        </span>
+      )}
+
+      {/* Golden star for upcoming */}
+      {product.upcoming && (
+        <span className="absolute top-3 right-3 z-10 text-3xl text-(--gold,#D4AF37) drop-shadow-[0_1px_2px_rgba(44,26,14,0.4)]">
+          ★
         </span>
       )}
 
@@ -117,7 +121,9 @@ function ProductCard({ product, onContact }: { product: Product; onContact: () =
             alt={`${product.name} ${product.weight}`}
             fill
             sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 80vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            className={`object-cover transition-transform duration-500 group-hover:scale-105 ${
+              product.upcoming ? "blur-md scale-110" : ""
+            }`}
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-(--cream) text-(--green)">
@@ -140,6 +146,8 @@ function ProductCard({ product, onContact }: { product: Product; onContact: () =
         <h3 className="font-(family-name:--font-display) text-xl text-(--coffee)">
           {product.name}
         </h3>
+
+        <p className="text-sm text-(--bark)/70">{product.description}</p>
 
         <div className="mt-2 flex items-center justify-between border-t border-(--sand) pt-3 gap-3 min-w-0">
           {product.upcoming ? (

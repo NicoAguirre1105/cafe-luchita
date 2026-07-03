@@ -57,45 +57,36 @@ export default function AboutUs() {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 md:gap-4">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-(--cream)/15">
-                <Image
-                  src="/img/about_1.jpeg"
-                  alt="Familia caficultora"
-                  fill
-                  sizes="(min-width: 768px) 25vw, 50vw"
-                  className="object-cover"
-                />
-              </div>
-              <div className="relative mt-10 aspect-[4/5] overflow-hidden rounded-2xl border border-(--cream)/15">
-                <Image
-                  src="/img/about_2.jpeg"
-                  alt="Cosecha de café"
-                  fill
-                  sizes="(min-width: 768px) 25vw, 50vw"
-                  className="object-cover"
-                />
-              </div>
+            <div className="relative aspect-6/5 overflow-hidden rounded-2xl border border-(--cream)/15">
+              <Image
+                src="/img/sobre_nosotros.jpeg"
+                alt="Familia caficultora"
+                fill
+                sizes="(min-width: 768px) 25vw, 50vw"
+                className="object-cover"
+              />
             </div>
           </div>
         </Container>,
 
         <Container size="wide" key="timeline">
           <div className="grid gap-12 md:grid-cols-[1.4fr_0.8fr] md:items-center md:gap-16">
-            <ol className="flex flex-col gap-8 border-l-2 border-(--cream)/15 pl-8">
-              {timeline.map((t) => (
-                <li key={t.year} className="relative">
-                  <span className="absolute -left-[42px] grid h-5 w-5 place-items-center rounded-full bg-(--orange) ring-4 ring-(--green-deep)" />
-                  <p className="font-(family-name:--font-display) text-xl md:text-2xl text-(--orange)">
-                    {t.year}
-                  </p>
-                  <p className="mt-1 font-semibold text-(--cream)">{t.title}</p>
-                  <p className="mt-2 text-sm md:text-base text-(--cream)/70 leading-relaxed max-w-md">
-                    {t.description}
-                  </p>
-                </li>
-              ))}
-            </ol>
+            <div data-scrub-viewport className="relative h-[60vh] overflow-hidden pl-3">
+              <ol data-scrub-track className="flex flex-col gap-8 border-l-2 border-(--cream)/15 py-16 pl-8 pr-2">
+                {timeline.map((t) => (
+                  <li key={t.year} className="relative">
+                    <span className="absolute -left-[42px] grid h-5 w-5 place-items-center rounded-full bg-(--orange) ring-4 ring-(--green-deep)" />
+                    <p className="font-(family-name:--font-display) text-xl md:text-2xl text-(--orange)">
+                      {t.year}
+                    </p>
+                    <p className="mt-1 font-semibold text-(--cream)">{t.title}</p>
+                    <p className="mt-2 text-sm md:text-base text-(--cream)/70 leading-relaxed max-w-md">
+                      {t.description}
+                    </p>
+                  </li>
+                ))}
+              </ol>
+            </div>
 
             <div className="relative w-full h-[320px] md:h-[420px] overflow-hidden rounded-2xl border border-(--cream)/15">
               <Image

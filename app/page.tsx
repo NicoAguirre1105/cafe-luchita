@@ -11,7 +11,7 @@ import HowItWorks from "./_sections/HowItWorks"
 import Presentations from "./_sections/Presentations"
 import OfficeCTA from "./_sections/OfficeCTA"
 import { OurCoffeeOrigin, RoastLevels, GrindTypes } from "./_sections/OurCoffee"
-import CoffeeProcess from "./_sections/CoffeeProcess"
+import CoffeeProcess, { processVideos } from "./_sections/CoffeeProcess"
 import Benefits from "./_sections/Benefits"
 import Delivery from "./_sections/Delivery"
 import Testimonials from "./_sections/Testimonials"
@@ -23,6 +23,7 @@ export default function Home() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false)
   const [heroImageLoaded, setHeroImageLoaded] = useState(false)
   const [minDelayPassed, setMinDelayPassed] = useState(false)
+  const [videosLoaded, setVideosLoaded] = useState(false)
   const [isReady, setIsReady] = useState(false)
   const handleContactModal = () => setIsContactModalOpen((v) => !v)
 
@@ -38,6 +39,46 @@ export default function Home() {
   useEffect(() => {
     const id = setTimeout(() => setHeroImageLoaded(true), 4000)
     return () => clearTimeout(id)
+  }, [])
+
+  // Precarga los videos del proceso (Pilado, Tueste, Molido) antes de revelar la
+  // página, para que no aparezca el poster/negro mientras cargan al hacer scroll.
+  // Igual que con la imagen del Hero, hay un salvavidas por si algún video nunca
+  // dispara "canplaythrough" (ej. red muy lenta o archivo con problemas).
+  useEffect(() => {
+    if (processVideos.length === 0) {
+      setVideosLoaded(true)
+      return
+    }
+
+    let cancelled = false
+    let remaining = processVideos.length
+    const videos: HTMLVideoElement[] = []
+
+    const markDone = () => {
+      remaining -= 1
+      if (remaining <= 0 && !cancelled) setVideosLoaded(true)
+    }
+
+    processVideos.forEach((src) => {
+      const video = document.createElement("video")
+      video.preload = "auto"
+      video.muted = true
+      video.src = src
+      video.addEventListener("canplaythrough", markDone, { once: true })
+      video.addEventListener("error", markDone, { once: true })
+      videos.push(video)
+    })
+
+    const failsafe = setTimeout(() => {
+      if (!cancelled) setVideosLoaded(true)
+    }, 4000)
+
+    return () => {
+      cancelled = true
+      clearTimeout(failsafe)
+      videos.forEach((v) => v.remove())
+    }
   }, [])
 
   // Bloquea el scroll mientras el loader está visible, sin usar overflow:hidden
@@ -72,7 +113,7 @@ export default function Home() {
   // que el usuario ve desde el primer frame — evita el "doble render" del salto
   // de altura.
   useEffect(() => {
-    if (!heroImageLoaded || !minDelayPassed) return
+    if (!heroImageLoaded || !minDelayPassed || !videosLoaded) return
 
     let cancelled = false
 
@@ -90,7 +131,7 @@ export default function Home() {
     return () => {
       cancelled = true
     }
-  }, [heroImageLoaded, minDelayPassed])
+  }, [heroImageLoaded, minDelayPassed, videosLoaded])
 
   return (
     <>
