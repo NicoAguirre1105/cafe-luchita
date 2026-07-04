@@ -44,37 +44,39 @@ export default function Delivery() {
     <ScrollChapter tone="green"
       steps={[
         <Container key="delivery">
-          <div className="grid gap-12 md:grid-cols-[1fr_1.5fr] md:items-center md:gap-16">
-            <div>
-              <span className="text-xs uppercase tracking-[0.25em] font-semibold text-(--orange)">
-                Envíos a domicilio
-              </span>
-              <h2 className="mt-4 font-(family-name:--font-display) text-3xl md:text-5xl leading-[1.1] font-medium">
-              <em className="font-bold">CAFÉ LUCHITA</em> va a tu{" "}
-                <em className="not-italic text-(--orange) font-semibold">puerta</em>.
-              </h2>
-              <p className="mt-5 text-base md:text-lg leading-relaxed text-(--cream)/80 max-w-md">
-                Envíos a nivel nacional. Coordinamos contigo y nos encargamos del
-                resto — desde la finca a tu hogar.
-              </p>
-            </div>
+          <div data-scrub-viewport className="no-scrollbar max-md:max-h-[calc(100dvh_-_var(--header-h)_-_6rem)] max-md:overflow-hidden md:max-h-none md:overflow-visible">
+            <div data-scrub-track className="grid gap-8 md:grid-cols-[1fr_1.5fr] md:items-center md:gap-16">
+              <div>
+                <span className="text-xs uppercase tracking-[0.25em] font-semibold text-(--orange)">
+                  Envíos a domicilio
+                </span>
+                <h2 className="mt-4 font-(family-name:--font-display) text-3xl md:text-5xl leading-[1.1] font-medium">
+                <em className="font-bold">CAFÉ LUCHITA</em> va a tu{" "}
+                  <em className="not-italic text-(--orange) font-semibold">puerta</em>.
+                </h2>
+                <p className="mt-5 text-base md:text-lg leading-relaxed text-(--cream)/80 max-w-md">
+                  Envíos a nivel nacional. Coordinamos contigo y nos encargamos del
+                  resto — desde la finca a tu hogar.
+                </p>
+              </div>
 
-            <ul className="grid gap-4 md:grid-cols-3">
-              {cards.map((c) => (
-                <li key={c.title}>
-                  <article className="h-full rounded-2xl border border-(--cream)/15 bg-(--cream)/5 p-6 transition-colors duration-300 hover:bg-(--cream)/10">
-                    <div className="text-(--orange)">{c.icon}</div>
-                    <p className="mt-5 text-xs uppercase tracking-widest text-(--cream)/60 font-semibold">
-                      {c.title}
-                    </p>
-                    <p className="mt-2 font-(family-name:--font-display) text-xl md:text-2xl text-(--cream)">
-                      {c.value}
-                    </p>
-                    <p className="mt-3 text-sm text-(--cream)/75 leading-relaxed">{c.description}</p>
-                  </article>
-                </li>
-              ))}
-            </ul>
+              <ul className="grid gap-4 md:grid-cols-3">
+                {cards.map((c) => (
+                  <li key={c.title}>
+                    <article className="h-full rounded-2xl border border-(--cream)/15 bg-(--cream)/5 p-6 transition-colors duration-300 hover:bg-(--cream)/10">
+                      <div className="text-(--orange)">{c.icon}</div>
+                      <p className="mt-5 text-xs uppercase tracking-widest text-(--cream)/60 font-semibold">
+                        {c.title}
+                      </p>
+                      <p className="mt-2 font-(family-name:--font-display) text-xl md:text-2xl text-(--cream)">
+                        {c.value}
+                      </p>
+                      <p className="mt-3 text-sm text-(--cream)/75 leading-relaxed">{c.description}</p>
+                    </article>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </Container>,
       ]}

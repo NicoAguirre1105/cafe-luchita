@@ -66,7 +66,7 @@ export function OurCoffeeOrigin() {
                 </span>
                 <h2 className="mt-4 font-(family-name:--font-display) text-3xl md:text-4xl leading-[1.1] font-medium text-(--coffee)">
                   Cararango, Loja —{" "}
-                  <em className="not-italic italic text-(--green) font-semibold">donde nace</em>{" "}
+                  <em className="not-italic text-(--green) font-semibold">donde nace</em>{" "}
                   nuestro café.
                 </h2>
                 <div className="mt-5 space-y-3 text-sm md:text-base leading-relaxed text-(--coffee)/80">

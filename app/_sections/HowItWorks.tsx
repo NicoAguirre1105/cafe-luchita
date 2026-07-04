@@ -74,30 +74,34 @@ export default function HowItWorks() {
           />
         </Container>,
         <Container key="cards">
-          <h3 className="mb-10 md:mb-12 font-(family-name:--font-display) text-3xl md:text-5xl text-center text-(--coffee)">
-            De tu mensaje a{" "}
-            <em className="not-italic text-(--green) font-semibold">tu taza</em>.
-          </h3>
-          <ol className="grid gap-6 md:grid-cols-3 md:gap-8">
-            {steps.map((step) => (
-              <li key={step.number}>
-                <article className="group relative h-full rounded-3xl border border-(--sand) bg-(--white)/40 p-8 transition-colors duration-300 hover:bg-(--cream) hover:border-(--green)">
-                  <span className="font-(family-name:--font-display) text-5xl md:text-6xl text-(--orange) leading-none">
-                    {step.number}
-                  </span>
-                  <div className="mt-6 text-(--green) transition-transform duration-300 group-hover:-translate-y-1">
-                    {step.icon}
-                  </div>
-                  <h3 className="mt-5 font-(family-name:--font-display) text-2xl text-(--coffee)">
-                    {step.title}
-                  </h3>
-                  <p className="mt-3 text-sm md:text-base text-(--coffee)/75 leading-relaxed">
-                    {step.description}
-                  </p>
-                </article>
-              </li>
-            ))}
-          </ol>
+          <div data-scrub-viewport className="no-scrollbar max-md:max-h-[calc(100dvh_-_var(--header-h)_-_6rem)] max-md:overflow-hidden md:max-h-none md:overflow-visible">
+            <div data-scrub-track>
+              <h3 className="mb-10 md:mb-12 font-(family-name:--font-display) text-3xl md:text-5xl text-center text-(--coffee)">
+                A un{" "}
+                <em className="not-italic text-(--green) font-semibold">mensaje</em> de distancia.
+              </h3>
+              <ol className="grid gap-6 md:grid-cols-3 md:gap-8">
+                {steps.map((step) => (
+                  <li key={step.number}>
+                    <article className="group relative h-full rounded-3xl border border-(--sand) bg-(--white)/40 p-8 transition-colors duration-300 hover:bg-(--cream) hover:border-(--green)">
+                      <span className="font-(family-name:--font-display) text-5xl md:text-6xl text-(--orange) leading-none">
+                        {step.number}
+                      </span>
+                      <div className="mt-6 text-(--green) transition-transform duration-300 group-hover:-translate-y-1">
+                        {step.icon}
+                      </div>
+                      <h3 className="mt-5 font-(family-name:--font-display) text-2xl text-(--coffee)">
+                        {step.title}
+                      </h3>
+                      <p className="mt-3 text-sm md:text-base text-(--coffee)/75 leading-relaxed">
+                        {step.description}
+                      </p>
+                    </article>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
         </Container>,
       ]}
     />

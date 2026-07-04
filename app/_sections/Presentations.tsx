@@ -77,17 +77,21 @@ export default function Presentations({
           />
         </Container>,
         <Container size="wide" key="cards">
-          <h3 className="mb-10 md:mb-12 font-(family-name:--font-display) text-3xl md:text-5xl text-center text-(--coffee)">
-            Un café, cuatro formas de{" "}
-            <em className="not-italic text-(--green) font-semibold">vivirlo</em>.
-          </h3>
-          <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {products.map((product, i) => (
-              <li key={`${product.name}-${product.weight}-${i}`}>
-                <ProductCard product={product} onContact={handleContactModal} />
-              </li>
-            ))}
-          </ul>
+          <div data-scrub-viewport className="no-scrollbar max-md:max-h-[calc(100dvh_-_var(--header-h)_-_6rem)] max-md:overflow-hidden md:max-h-none md:overflow-visible">
+            <div data-scrub-track>
+              <h3 className="mb-10 md:mb-12 font-(family-name:--font-display) text-3xl md:text-5xl text-center text-(--coffee)">
+                Un café, cuatro formas de{" "}
+                <em className="not-italic text-(--green) font-semibold">vivirlo</em>.
+              </h3>
+              <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+                {products.map((product, i) => (
+                  <li key={`${product.name}-${product.weight}-${i}`}>
+                    <ProductCard product={product} onContact={handleContactModal} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </Container>,
       ]}
     />

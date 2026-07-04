@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import ScrollChapter from "../_components/ScrollChapter"
 import { Container } from "../_components/Section"
 import SectionHeader from "../_components/SectionHeader"
@@ -12,6 +12,19 @@ const Icon = ({ children }: { children: React.ReactNode }) => (
     {children}
   </svg>
 )
+
+function Citation({ n, href }: { n: number; href: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="ml-0.5 text-[0.7em] align-super font-semibold text-(--green) underline decoration-(--green)/40 underline-offset-2 hover:text-(--orange)"
+    >
+      [{n}]
+    </a>
+  )
+}
 
 const icons = {
   bolt:       <Icon><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></Icon>,
@@ -49,15 +62,45 @@ type ProfileKey = "deportistas" | "empresarios" | "casa"
 
 const profiles: Record<
   ProfileKey,
-  { label: string; subtitle: string; points: { icon: React.ReactNode; title: string; desc: string }[]; tip: string }
+  { label: string; subtitle: string; points: { icon: React.ReactNode; title: string; desc: React.ReactNode }[]; tip: string }
 > = {
   deportistas: {
     label: "Deportistas",
     subtitle: "Pre y post entrenamiento",
     points: [
-      { icon: icons.bolt,       title: "Rendimiento medible",       desc: "La EFSA confirma que 3–6 mg/kg de cafeína mejoran resistencia y fuerza muscular sin sobreestimulación." },
-      { icon: icons.heartPulse, title: "Retrasa la fatiga",         desc: "Bloquea los receptores de adenosina y permite entrenamientos más intensos con la misma percepción de esfuerzo." },
-      { icon: icons.cycle,      title: "Recuperación más rápida",   desc: "Tomado con carbohidratos post-ejercicio acelera la reposición de glucógeno muscular." },
+      {
+        icon: icons.bolt,
+        title: "Rendimiento medible",
+        desc: (
+          <>
+            La Sociedad Internacional de Nutrición Deportiva (ISSN) respalda que dosis de 3–6 mg/kg de
+            cafeína mejoran el rendimiento físico y la resistencia muscular.
+            <Citation n={1} href="https://g-se.com/es/declaracion-de-posicion-de-la-sociedad-internacional-de-nutricion-deportiva-cafeina-y-rendimiento-1268-sa-f57cfb271e0442" />
+          </>
+        ),
+      },
+      {
+        icon: icons.heartPulse,
+        title: "Retrasa la fatiga",
+        desc: (
+          <>
+            La cafeína bloquea los receptores de adenosina, lo que reduce la percepción de fatiga y puede
+            permitir entrenamientos más intensos al mismo nivel percibido de esfuerzo.
+            <Citation n={2} href="https://g-se.com/es/cafeina-y-ejercicio-metabolismo-resistencia-y-rendimiento-344-sa-l57cfb271375f1" />
+          </>
+        ),
+      },
+      {
+        icon: icons.cycle,
+        title: "Recuperación más rápida",
+        desc: (
+          <>
+            Tomada junto con carbohidratos tras el ejercicio, la cafeína puede potenciar la resíntesis de
+            glucógeno muscular en comparación con carbohidratos solos.
+            <Citation n={3} href="https://pubmed.ncbi.nlm.nih.gov/18467543/" />
+          </>
+        ),
+      },
       { icon: icons.smile,      title: "Amigable al estómago",      desc: "Acidez moderada que no provoca molestias gástricas en ayunas antes de entrenar." },
     ],
     tip: "30–45 min antes del entrenamiento, cuando la cafeína alcanza su pico máximo en sangre.",
@@ -68,7 +111,17 @@ const profiles: Record<
     points: [
       { icon: icons.brain,     title: "Concentración sostenida",      desc: "Mejora la memoria de trabajo y la atención en tareas complejas. Ideal para jornadas largas." },
       { icon: icons.gitBranch, title: "Mejor toma de decisiones",     desc: "Contrarresta la fatiga de decisión que se acumula en reuniones y negociaciones." },
-      { icon: icons.lightbulb, title: "Creatividad e innovación",     desc: "Investigación del MIT vincula el café moderado con mayor pensamiento lateral." },
+      {
+        icon: icons.lightbulb,
+        title: "Creatividad e innovación",
+        desc: (
+          <>
+            Un estudio publicado por JAMA vincula el consumo moderado de café con cafeína con una mejor
+            preservación de la función cognitiva.
+            <Citation n={4} href="https://jamanetwork.com/journals/jama/article-abstract/2844764?utm_campaign=articlePDF&utm_medium=articlePDFlink&utm_source=articlePDF&utm_content=jama.2025.27259" />
+          </>
+        ),
+      },
       { icon: icons.smile,     title: "Bienestar emocional",          desc: "Estimula dopamina y serotonina, mejorando el ánimo en entornos de alta presión." },
     ],
     tip: "1–2 tazas en la mañana y una tercera a media jornada maximizan la productividad sin afectar el sueño.",
@@ -79,7 +132,18 @@ const profiles: Record<
     points: [
       { icon: icons.sunrise, title: "Ritual de bienestar",        desc: "El acto de preparar café activa la atención plena. Un ancla emocional para iniciar el día." },
       { icon: icons.shuffle, title: "Versatilidad doméstica",     desc: "Funciona en moka, prensa francesa, filtro o AeroPress. No necesita máquina profesional." },
-      { icon: icons.dna,     title: "Doble perfil antioxidante",  desc: "Ácidos clorogénicos y melanoidinas — protección celular respaldada por Harvard y Johns Hopkins." },
+      {
+        icon: icons.dna,
+        title: "Doble perfil antioxidante",
+        desc: (
+          <>
+            Los ácidos clorogénicos y las melanoidinas del café contribuyen a su actividad antioxidante, y
+            estudios experimentales sugieren potenciales efectos protectores frente al daño oxidativo
+            celular.
+            <Citation n={5} href="https://digital.csic.es/handle/10261/277415" />
+          </>
+        ),
+      },
       { icon: icons.users,   title: "Para toda la familia",       desc: "Perfil accesible, sin la barrera del sabor ácido o amargo extremo." },
     ],
     tip: "Guárdalo en recipiente hermético, lejos de la luz. Consúmelo en 3–4 semanas tras el tueste.",
@@ -89,6 +153,11 @@ const profiles: Record<
 export default function Benefits() {
   const [active, setActive] = useState<ProfileKey>("empresarios")
   const data = profiles[active]
+  const profileScrollRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    profileScrollRef.current?.scrollTo({ top: 0, behavior: "instant" })
+  }, [active])
 
   return (
     <ScrollChapter tone="sand" id="Beneficios"
@@ -115,76 +184,87 @@ export default function Benefits() {
           />
         </Container>,
         <Container key="reasons">
-          <h3 className="mb-10 md:mb-12 font-(family-name:--font-display) text-3xl md:text-5xl text-center text-(--coffee)">
-            Lo que hace especial a este{" "}
-            <em className="not-italic text-(--green) font-semibold">tueste</em>.
-          </h3>
-          <ul className="grid gap-6 md:grid-cols-3 md:gap-8">
-            {reasons.map((r, i) => (
-              <li key={r.title}>
-                <article className="h-full rounded-3xl border border-(--sand) bg-(--milk) p-7">
-                  <span className="font-(family-name:--font-display) text-4xl text-(--orange)">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="mt-4 font-(family-name:--font-display) text-xl md:text-2xl text-(--coffee)">
-                    {r.title}
-                  </h3>
-                  <p className="mt-3 text-sm md:text-base text-(--coffee)/75 leading-relaxed">
-                    {r.description}
-                  </p>
-                </article>
-              </li>
-            ))}
-          </ul>
-        </Container>,
-        <Container key="profiles">
-          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <div>
-              <span className="text-xs uppercase tracking-[0.25em] font-semibold text-(--green)">
-                Para quién
-              </span>
-              <h3 className="mt-2 font-(family-name:--font-display) text-2xl md:text-3xl text-(--coffee) max-w-lg">
-                Un mismo café que se acomoda a tu día.
+          <div data-scrub-viewport className="no-scrollbar max-md:max-h-[calc(100dvh_-_var(--header-h)_-_6rem)] max-md:overflow-hidden md:max-h-none md:overflow-visible">
+            <div data-scrub-track>
+              <h3 className="mb-10 md:mb-12 font-(family-name:--font-display) text-3xl md:text-5xl text-center text-(--coffee)">
+                Lo que hace especial a este{" "}
+                <em className="not-italic text-(--green) font-semibold">tueste</em>.
               </h3>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {(Object.keys(profiles) as ProfileKey[]).map((key) => (
-                <button
-                  key={key}
-                  type="button"
-                  onClick={() => setActive(key)}
-                  className={`rounded-full px-5 py-2 text-sm font-medium transition-all duration-300 cursor-pointer ${
-                    active === key
-                      ? "bg-(--green) text-(--cream)"
-                      : "bg-(--milk) text-(--coffee) border border-(--sand) hover:border-(--green)/50"
-                  }`}
-                >
-                  {profiles[key].label}
-                </button>
-              ))}
+              <ul className="grid gap-6 md:grid-cols-3 md:gap-8">
+                {reasons.map((r, i) => (
+                  <li key={r.title}>
+                    <article className="h-full rounded-3xl border border-(--sand) bg-(--milk) p-7">
+                      <span className="font-(family-name:--font-display) text-4xl text-(--orange)">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <h3 className="mt-4 font-(family-name:--font-display) text-xl md:text-2xl text-(--coffee)">
+                        {r.title}
+                      </h3>
+                      <p className="mt-3 text-sm md:text-base text-(--coffee)/75 leading-relaxed">
+                        {r.description}
+                      </p>
+                    </article>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
+        </Container>,
+        <Container key="profiles">
+          <div
+            ref={profileScrollRef}
+            className="no-scrollbar max-md:max-h-[calc(100dvh_-_var(--header-h)_-_6rem)] max-md:overflow-y-auto max-md:overflow-x-hidden md:max-h-none md:overflow-visible"
+          >
+            <div>
+              <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                <div>
+                  <span className="text-xs uppercase tracking-[0.25em] font-semibold text-(--green)">
+                    Para quién
+                  </span>
+                  <h3 className="mt-2 font-(family-name:--font-display) text-2xl md:text-3xl text-(--coffee) max-w-lg">
+                    Un mismo café que se acomoda a tu día.
+                  </h3>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {(Object.keys(profiles) as ProfileKey[]).map((key) => (
+                    <button
+                      key={key}
+                      type="button"
+                      onClick={() => setActive(key)}
+                      className={`rounded-full px-5 py-2 text-sm font-medium transition-all duration-300 cursor-pointer ${
+                        active === key
+                          ? "bg-(--green) text-(--cream)"
+                          : "bg-(--milk) text-(--coffee) border border-(--sand) hover:border-(--green)/50"
+                      }`}
+                    >
+                      {profiles[key].label}
+                    </button>
+                  ))}
+                </div>
+              </div>
 
-          <div className="mt-8 rounded-3xl border border-(--sand) bg-(--milk) p-7 md:p-10">
-            <p className="text-sm font-semibold uppercase tracking-widest text-(--orange)">
-              {data.subtitle}
-            </p>
-            <ul className="mt-8 grid gap-6 md:grid-cols-2">
-              {data.points.map((p) => (
-                <li key={p.title} className="flex gap-4 text-(--green)">
-                  {p.icon}
-                  <div>
-                    <h4 className="font-(family-name:--font-display) text-lg text-(--coffee)">
-                      {p.title}
-                    </h4>
-                    <p className="mt-1 text-sm text-(--coffee)/75 leading-relaxed">{p.desc}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-8 rounded-2xl bg-(--green) px-5 py-4 text-(--cream)">
-              <p className="text-xs uppercase tracking-widest font-semibold text-(--orange)">Consejo</p>
-              <p className="mt-1 text-sm md:text-base leading-relaxed">{data.tip}</p>
+              <div className="mt-6 md:mt-8 rounded-3xl border border-(--sand) bg-(--milk) p-7 md:p-10">
+                <p className="text-sm font-semibold uppercase tracking-widest text-(--orange)">
+                  {data.subtitle}
+                </p>
+                <ul className="mt-6 md:mt-8 grid gap-6 md:grid-cols-2">
+                  {data.points.map((p) => (
+                    <li key={p.title} className="flex gap-4 text-(--green)">
+                      {p.icon}
+                      <div>
+                        <h4 className="font-(family-name:--font-display) text-lg text-(--coffee)">
+                          {p.title}
+                        </h4>
+                        <p className="mt-1 text-sm text-(--coffee)/75 leading-relaxed">{p.desc}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-6 md:mt-8 rounded-2xl bg-(--green) px-5 py-4 text-(--cream)">
+                  <p className="text-xs uppercase tracking-widest font-semibold text-(--orange)">Consejo</p>
+                  <p className="mt-1 text-sm md:text-base leading-relaxed">{data.tip}</p>
+                </div>
+              </div>
             </div>
           </div>
         </Container>,

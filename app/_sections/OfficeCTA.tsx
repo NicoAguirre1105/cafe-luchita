@@ -31,7 +31,7 @@ export default function OfficeCTA() {
                   Hablemos.
                 </em>
               </h2>
-              <p className="text-base md:text-lg leading-relaxed text-(--cream)/80 max-w-xl">
+              <p className="text-sm md:text-lg leading-relaxed text-(--cream)/80 max-w-xl">
                 Tenemos convenios de ventas al por mayor para oficinas, barras de especialidad y cafeterías en cualquier ciudad del país. Entregas regulares, factura y un café que
                 ya ofrece algo distinto sin que tengas mucho que explicar.
               </p>

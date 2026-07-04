@@ -36,28 +36,8 @@ export default function AboutUs() {
     <ScrollChapter tone="green-dark" id="SobreNosotros"
       steps={[
         <Container size="wide" key="intro">
-          <div className="grid gap-12 md:grid-cols-[1.1fr_1fr] md:items-center md:gap-16">
-            <div>
-              <span className="text-xs uppercase tracking-[0.25em] font-semibold text-(--orange)">
-                Sobre nosotros
-              </span>
-              <h2 className="mt-4 font-(family-name:--font-display) text-3xl md:text-5xl leading-[1.1] font-medium text-(--cream)">
-                Una historia de{" "}
-                <em className="not-italic text-(--orange) font-semibold">familia</em>,
-                campo y sabor.
-              </h2>
-              <p className="mt-6 text-base md:text-lg leading-relaxed text-(--cream)/80 max-w-xl">
-                <strong className="text-(--cream)">Café Luchita</strong> nace para fortalecer
-                una tradición familiar. Lo que empezó en 1958 como sustento, sigue teniendo hoy
-                el mismo objetivo: cuidar el café que cuida a los nuestros.
-              </p>
-              <p className="mt-4 text-2xl font-semibold text-(--cream)/70 max-w-xl italic font-(family-name:--font-display)">
-                &ldquo;Agradecemos a todos los caficultores de Cararango por su dedicación y
-                esmero.&rdquo;
-              </p>
-            </div>
-
-            <div className="relative aspect-6/5 overflow-hidden rounded-2xl border border-(--cream)/15">
+          <div className="grid gap-5 md:grid-cols-[1.1fr_1fr] md:items-center md:gap-16">
+            <div className="order-1 md:order-2 relative aspect-[16/9] md:aspect-6/5 overflow-hidden rounded-2xl border border-(--cream)/15">
               <Image
                 src="/img/sobre_nosotros.jpeg"
                 alt="Familia caficultora"
@@ -66,13 +46,48 @@ export default function AboutUs() {
                 className="object-cover"
               />
             </div>
+
+            <div data-scrub-viewport className="no-scrollbar order-2 md:order-1 max-md:max-h-[calc(100dvh_-_var(--header-h)_-_14rem)] max-md:overflow-hidden md:max-h-none md:overflow-visible">
+              <div data-scrub-track>
+                <span className="text-xs uppercase tracking-[0.25em] font-semibold text-(--orange)">
+                  Sobre nosotros
+                </span>
+                <h2 className="mt-4 font-(family-name:--font-display) text-3xl md:text-5xl leading-[1.1] font-medium text-(--cream)">
+                  Una historia de{" "}
+                  <em className="not-italic text-(--orange) font-semibold">familia</em>,
+                  campo y sabor.
+                </h2>
+                <p className="mt-6 text-base md:text-lg leading-relaxed text-(--cream)/80 max-w-xl">
+                  <strong className="text-(--cream)">Café Luchita</strong> nace para fortalecer
+                  una tradición familiar. Lo que empezó en 1958 como sustento, sigue teniendo hoy
+                  el mismo objetivo: cuidar el café que cuida a los nuestros.
+                </p>
+                <p className="mt-4 text-2xl font-semibold text-(--cream)/70 max-w-xl italic font-(family-name:--font-display)">
+                  &ldquo;Agradecemos a todos los caficultores de Cararango por su dedicación y
+                  esmero.&rdquo;
+                </p>
+              </div>
+            </div>
           </div>
         </Container>,
 
         <Container size="wide" key="timeline">
-          <div className="grid gap-12 md:grid-cols-[1.4fr_0.8fr] md:items-center md:gap-16">
-            <div data-scrub-viewport className="relative h-[60vh] overflow-hidden pl-3">
-              <ol data-scrub-track className="flex flex-col gap-8 border-l-2 border-(--cream)/15 py-16 pl-8 pr-2">
+          <div className="grid gap-5 pt-6 md:pt-0 md:grid-cols-[1.4fr_0.8fr] md:items-center md:gap-16">
+            <div className="order-1 md:order-2 relative w-full h-[200px] md:h-[420px] overflow-hidden rounded-2xl border border-(--cream)/15">
+              <Image
+                src="/img/about_3.jpeg"
+                alt="Café de Cararango"
+                fill
+                sizes="(min-width: 768px) 30vw, 90vw"
+                className="object-cover"
+              />
+            </div>
+
+            <div
+              data-scrub-viewport
+              className="no-scrollbar order-2 md:order-1 relative pl-3 max-md:h-[calc(100dvh_-_var(--header-h)_-_15.5rem)] max-md:overflow-hidden md:max-lg:h-auto md:max-lg:overflow-visible lg:h-[60vh] lg:overflow-hidden"
+            >
+              <ol data-scrub-track className="flex flex-col gap-8 border-l-2 border-(--cream)/15 py-10 md:py-16 pl-8 pr-2">
                 {timeline.map((t) => (
                   <li key={t.year} className="relative">
                     <span className="absolute -left-[42px] grid h-5 w-5 place-items-center rounded-full bg-(--orange) ring-4 ring-(--green-deep)" />
@@ -86,16 +101,6 @@ export default function AboutUs() {
                   </li>
                 ))}
               </ol>
-            </div>
-
-            <div className="relative w-full h-[320px] md:h-[420px] overflow-hidden rounded-2xl border border-(--cream)/15">
-              <Image
-                src="/img/about_3.jpeg"
-                alt="Café de Cararango"
-                fill
-                sizes="(min-width: 768px) 30vw, 90vw"
-                className="object-cover"
-              />
             </div>
           </div>
         </Container>,

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import ScrollChapter from "../_components/ScrollChapter"
 import { Container } from "../_components/Section"
@@ -77,6 +77,11 @@ export const processVideos = steps
 export default function CoffeeProcess() {
   const [active, setActive] = useState(0)
   const step = steps[active]
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    scrollRef.current?.scrollTo({ top: 0, behavior: "instant" })
+  }, [active])
 
   return (
     <ScrollChapter tone="coffee" id="Proceso"
@@ -114,14 +119,14 @@ export default function CoffeeProcess() {
                   }`}
                 >
                   <span
-                    className={`font-(family-name:--font-display) text-2xl tabular-nums leading-none transition-colors ${
+                    className={`font-(family-name:--font-display) text-xl tabular-nums leading-none transition-colors ${
                       active === i ? "text-(--orange)" : "text-(--cream)/25"
                     }`}
                   >
                     {s.number}
                   </span>
                   <span
-                    className={`text-sm font-medium whitespace-nowrap transition-colors ${
+                    className={`text-xs font-medium whitespace-nowrap transition-colors ${
                       active === i ? "text-(--cream)" : "text-(--cream)/40"
                     }`}
                   >
@@ -133,10 +138,12 @@ export default function CoffeeProcess() {
           </div>
 
           {/* Active step — landscape card: image left, text right */}
-          <div className="mt-6">
+          <div
+            ref={scrollRef}
+            className="no-scrollbar mt-6 max-md:max-h-[calc(100dvh_-_var(--header-h)_-_14rem)] max-md:overflow-y-auto max-md:overflow-x-hidden md:max-h-none md:overflow-visible"
+          >
             <div
-              className="overflow-hidden rounded-3xl border border-(--cream)/10 grid md:grid-cols-[1.1fr_1fr]"
-              style={{ maxHeight: "56vh" }}
+              className="overflow-hidden rounded-3xl border border-(--cream)/10 grid md:grid-cols-[1.1fr_1fr] md:max-h-[56vh]"
             >
               {/* Image */}
               <div className="relative min-h-[220px] md:min-h-0">
@@ -167,7 +174,7 @@ export default function CoffeeProcess() {
               </div>
 
               {/* Text */}
-              <div className="flex flex-col justify-between p-6 md:p-8 bg-(--coffee) overflow-y-auto">
+              <div className="flex flex-col justify-between p-6 md:p-8 bg-(--coffee) md:overflow-y-auto">
                 <div>
                   <p className="text-xs uppercase tracking-widest text-(--orange) font-semibold">
                     {step.detail}

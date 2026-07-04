@@ -58,7 +58,7 @@ export default function Hero({
     <section
       ref={sectionRef}
       id="Inicio"
-      className="relative w-full min-h-dvh overflow-hidden bg-(--espresso) flex items-end pb-16 md:items-center md:pb-0"
+      className="relative w-full min-h-dvh overflow-hidden bg-(--espresso) flex items-center pb-16 md:pb-0"
     >
       <Image
         src="/img/landing-bg.jpeg"
@@ -114,7 +114,7 @@ export default function Hero({
 
         {/* CTAs */}
         <div
-          className="animate-fade-up flex flex-wrap gap-3"
+          className="animate-fade-up flex flex-wrap justify-center gap-3 md:justify-start"
           style={{ animationDelay: "0.3s" }}
         >
           <Button variant="orange" size="lg" onClick={handleContactModal}>
@@ -135,7 +135,7 @@ export default function Hero({
       {/* Registro sanitario — abajo, alineado horizontalmente con el bloque de stats */}
       <div
         ref={registroRef}
-        className="absolute bottom-14 right-4 md:bottom-16 md:right-10 z-10 text-[10px] md:text-xs text-(--cream)/35 tracking-wide"
+        className="absolute bottom-14 right-4 md:bottom-16 md:right-10 z-10 text-[10px] md:text-xs text-(--cream)/80 tracking-wide"
       >
         Registro sanitario: RSA-58213-INHQC
       </div>

@@ -65,6 +65,12 @@ export default function Header({
         borderBottom: "1px solid rgba(69,116,97,0.15)",
         transition: "background-color 0.4s ease",
       }
+    : isMenuOpen
+    ? {
+        backgroundColor: "var(--green)",
+        borderBottom: "1px solid rgba(255,255,255,0.12)",
+        transition: "background-color 0.4s ease",
+      }
     : {
         backgroundColor: scrolled ? "rgba(10,9,8,0.42)" : "rgba(10,9,8,0.08)",
         backdropFilter: "blur(14px)",
@@ -129,14 +135,16 @@ export default function Header({
                 </svg>
               </button>
             ) : (
-              <Button
-                variant="outline"
-                size="md"
-                onClick={handleContactModal}
-                className="hidden lg:inline-flex border-(--cream)/60 text-(--cream) hover:bg-(--cream)/10"
-              >
-                Contáctanos
-              </Button>
+              <div className="hidden lg:block">
+                <Button
+                  variant="outline"
+                  size="md"
+                  onClick={handleContactModal}
+                  className="border-(--cream)/60 text-(--cream) hover:bg-(--cream)/10"
+                >
+                  Contáctanos
+                </Button>
+              </div>
             )}
 
             {/* Mobile burger / close */}
@@ -148,7 +156,7 @@ export default function Header({
               }}
               aria-label="Abrir menú"
               className="lg:hidden grid h-10 w-10 place-items-center rounded-full transition-colors cursor-pointer"
-              style={{ color: isContactModalOpen || isMenuOpen ? "var(--green)" : "var(--cream)" }}
+              style={{ color: isContactModalOpen ? "var(--green)" : "var(--cream)" }}
             >
               <BurgerIcon open={isMenuOpen || isContactModalOpen} />
             </button>
@@ -159,7 +167,7 @@ export default function Header({
 
       {/* Mobile menu */}
       <div
-        className={`lg:hidden fixed inset-x-0 top-[56px] bottom-0 bg-(--milk) transition-transform duration-300 ease-out ${
+        className={`lg:hidden fixed inset-x-0 top-[var(--header-h)] h-[calc(100dvh_-_var(--header-h))] bg-(--cream) transition-transform duration-300 ease-out ${
           isMenuOpen ? "translate-x-0" : "translate-x-full pointer-events-none"
         }`}
       >

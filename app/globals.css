@@ -31,6 +31,18 @@
   :root { --header-h: 68px; }
 }
 
+.grind-dot {
+  width: var(--dot-size-mobile);
+  height: var(--dot-size-mobile);
+}
+
+@media (min-width: 768px) {
+  .grind-dot {
+    width: var(--dot-size-desktop);
+    height: var(--dot-size-desktop);
+  }
+}
+
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;

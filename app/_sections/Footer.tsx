@@ -83,7 +83,19 @@ export default function Footer() {
 
         <div className="mt-12 border-t border-(--cream)/10 pt-6 text-center text-xs text-(--cream)/50">
           <p>Café Luchita © {new Date().getFullYear()}. Todos los derechos reservados.</p>
-          <p>Sitio web realizado por Nicolas Aguirre Castillo.</p>
+          <p className="flex items-center justify-center gap-1.5">
+            Sitio web realizado por 
+            <a
+              href="https://www.linkedin.com/in/nicolas-aguirre-5a2a483ab/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn de Nicolas Aguirre"
+              className="inline-flex cursor-pointer text-(--cream)/60 transition-transform duration-200 hover:scale-102 hover:text-(--orange) underline"
+            >
+              Nicolas Aguirre Castillo
+            </a>.
+          </p>
+          <p>v2.0.0</p>
         </div>
       </div>
     </footer>
