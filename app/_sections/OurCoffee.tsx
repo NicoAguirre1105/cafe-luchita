@@ -134,64 +134,7 @@ export function RoastLevels() {
               Del más claro al más{" "}
               <em className="not-italic text-(--green) font-semibold">intenso</em>.
             </h3>
-            <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-              {roasts.map((roast) => (
-                <li key={roast.name}>
-                  <article
-                    className={`relative h-full rounded-3xl border p-6 transition-all duration-300 ${
-                      roast.highlight
-                        ? "bg-(--green) text-(--cream) border-(--green) -translate-y-2 md:-translate-y-3 shadow-[0_20px_50px_-20px_rgba(44,26,14,0.5)]"
-                        : "bg-(--milk) text-(--coffee) border-(--sand) hover:border-(--green)/40"
-                    }`}
-                  >
-                    {roast.highlight && (
-                      <span className="absolute -top-3 left-6 rounded-full bg-(--orange) px-3 py-1 text-xs font-semibold uppercase tracking-wider text-(--coffee)">
-                        Nuestro punto
-                      </span>
-                    )}
-                    <div className="flex items-center justify-between">
-                      <BeanIcon
-                        size={32}
-                        className={roast.highlight ? "text-(--orange)" : "text-(--green)"}
-                      />
-                      <span
-                        className={`text-xs uppercase tracking-widest ${
-                          roast.highlight ? "text-(--cream)/80" : "text-(--bark)/70"
-                        }`}
-                      >
-                        {roast.temp}
-                      </span>
-                    </div>
-                    <h3 className="mt-5 font-(family-name:--font-display) text-2xl">
-                      {roast.name}
-                    </h3>
-                    <p
-                      className={`mt-2 text-xs font-semibold uppercase tracking-wider ${
-                        roast.highlight ? "text-(--orange)" : "text-(--green)"
-                      }`}
-                    >
-                      {roast.body}
-                    </p>
-                    <p
-                      className={`mt-4 text-sm leading-relaxed ${
-                        roast.highlight ? "text-(--cream)/85" : "text-(--coffee)/75"
-                      }`}
-                    >
-                      {roast.description}
-                    </p>
-                    <p
-                      className={`mt-4 border-t pt-3 text-xs ${
-                        roast.highlight
-                          ? "border-(--cream)/20 text-(--cream)/70"
-                          : "border-(--sand) text-(--bark)/70"
-                      }`}
-                    >
-                      <span className="font-semibold">Usos:</span> {roast.uses}
-                    </p>
-                  </article>
-                </li>
-              ))}
-            </ul>
+            <RoastCards />
           </Container>,
         ]}
       />
@@ -229,6 +172,137 @@ export function GrindTypes() {
   )
 }
 
+function RoastCards() {
+  const [active, setActive] = useState(roasts.findIndex((r) => r.highlight))
+  const roast = roasts[active]
+
+  return (
+    <>
+      {/* Chips de tueste — mobile */}
+      <div className="md:hidden">
+        <div className="flex flex-wrap gap-2">
+          {roasts.map((r, i) => (
+            <button
+              key={r.name}
+              type="button"
+              onClick={() => setActive(i)}
+              className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 cursor-pointer ${
+                active === i
+                  ? "bg-(--green) text-(--cream)"
+                  : "bg-(--milk) text-(--coffee) border border-(--sand) hover:border-(--green)/50"
+              }`}
+            >
+              {r.name}
+            </button>
+          ))}
+        </div>
+
+        <article
+          className={`relative mt-5 rounded-3xl border p-6 transition-all duration-300 ${
+            roast.highlight
+              ? "bg-(--green) text-(--cream) border-(--green) shadow-[0_20px_50px_-20px_rgba(44,26,14,0.5)]"
+              : "bg-(--milk) text-(--coffee) border-(--sand)"
+          }`}
+        >
+          {roast.highlight && (
+            <span className="absolute -top-3 left-6 rounded-full bg-(--orange) px-3 py-1 text-xs font-semibold uppercase tracking-wider text-(--coffee)">
+              Nuestro punto
+            </span>
+          )}
+          <div className="flex items-center justify-between">
+            <BeanIcon
+              size={32}
+              className={roast.highlight ? "text-(--orange)" : "text-(--green)"}
+            />
+            <span
+              className={`text-xs uppercase tracking-widest ${
+                roast.highlight ? "text-(--cream)/80" : "text-(--bark)/70"
+              }`}
+            >
+              {roast.temp}
+            </span>
+          </div>
+          <h3 className="mt-5 font-(family-name:--font-display) text-2xl">{roast.name}</h3>
+          <p
+            className={`mt-2 text-xs font-semibold uppercase tracking-wider ${
+              roast.highlight ? "text-(--orange)" : "text-(--green)"
+            }`}
+          >
+            {roast.body}
+          </p>
+          <p
+            className={`mt-4 text-sm leading-relaxed ${
+              roast.highlight ? "text-(--cream)/85" : "text-(--coffee)/75"
+            }`}
+          >
+            {roast.description}
+          </p>
+          <p
+            className={`mt-4 border-t pt-3 text-xs ${
+              roast.highlight ? "border-(--cream)/20 text-(--cream)/70" : "border-(--sand) text-(--bark)/70"
+            }`}
+          >
+            <span className="font-semibold">Usos:</span> {roast.uses}
+          </p>
+        </article>
+      </div>
+
+      {/* Grid de tueste — tablet/desktop */}
+      <ul className="hidden md:grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        {roasts.map((r) => (
+          <li key={r.name}>
+            <article
+              className={`relative h-full rounded-3xl border p-6 transition-all duration-300 ${
+                r.highlight
+                  ? "bg-(--green) text-(--cream) border-(--green) -translate-y-2 md:-translate-y-3 shadow-[0_20px_50px_-20px_rgba(44,26,14,0.5)]"
+                  : "bg-(--milk) text-(--coffee) border-(--sand) hover:border-(--green)/40"
+              }`}
+            >
+              {r.highlight && (
+                <span className="absolute -top-3 left-6 rounded-full bg-(--orange) px-3 py-1 text-xs font-semibold uppercase tracking-wider text-(--coffee)">
+                  Nuestro punto
+                </span>
+              )}
+              <div className="flex items-center justify-between">
+                <BeanIcon size={32} className={r.highlight ? "text-(--orange)" : "text-(--green)"} />
+                <span
+                  className={`text-xs uppercase tracking-widest ${
+                    r.highlight ? "text-(--cream)/80" : "text-(--bark)/70"
+                  }`}
+                >
+                  {r.temp}
+                </span>
+              </div>
+              <h3 className="mt-5 font-(family-name:--font-display) text-2xl">{r.name}</h3>
+              <p
+                className={`mt-2 text-xs font-semibold uppercase tracking-wider ${
+                  r.highlight ? "text-(--orange)" : "text-(--green)"
+                }`}
+              >
+                {r.body}
+              </p>
+              <p
+                className={`mt-4 text-sm leading-relaxed ${
+                  r.highlight ? "text-(--cream)/85" : "text-(--coffee)/75"
+                }`}
+              >
+                {r.description}
+              </p>
+              <p
+                className={`mt-4 border-t pt-3 text-xs ${
+                  r.highlight ? "border-(--cream)/20 text-(--cream)/70" : "border-(--sand) text-(--bark)/70"
+                }`}
+              >
+                <span className="font-semibold">Usos:</span> {r.uses}
+              </p>
+            </article>
+          </li>
+        ))}
+      </ul>
+    </>
+  )
+}
+
 function Fact({ term, desc }: { term: string; desc: string }) {
   return (
     <div>
@@ -245,8 +319,26 @@ function GrindTable() {
 
   return (
     <div className="grid gap-8 md:grid-cols-[1fr_1.2fr] md:items-center">
-      {/* Lista de molidos */}
-      <ul className="flex flex-col gap-2">
+      {/* Chips de molidos — mobile */}
+      <div className="flex flex-wrap gap-2 md:hidden">
+        {grinds.map((g, i) => (
+          <button
+            key={g.name}
+            type="button"
+            onClick={() => setActive(i)}
+            className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 cursor-pointer ${
+              active === i
+                ? "bg-(--green) text-(--cream)"
+                : "bg-(--milk) text-(--coffee) border border-(--sand) hover:border-(--green)/50"
+            }`}
+          >
+            {g.name}
+          </button>
+        ))}
+      </div>
+
+      {/* Lista de molidos — tablet/desktop */}
+      <ul className="hidden md:flex md:flex-col gap-2">
         {grinds.map((g, i) => (
           <li key={g.name}>
             <button
