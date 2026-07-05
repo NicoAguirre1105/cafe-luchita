@@ -27,7 +27,7 @@ export default function OfficeCTA() {
               </span>
               <h2 className="font-(family-name:--font-display) text-3xl md:text-5xl leading-[1.1] font-medium">
                 ¿Coworking, oficina o cafetería?{" "}
-                <em className="not-italic italic font-semibold text-(--orange)">
+                <em className="not-italic font-semibold text-(--orange)">
                   Hablemos.
                 </em>
               </h2>

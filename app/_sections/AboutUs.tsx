@@ -37,7 +37,7 @@ export default function AboutUs() {
       steps={[
         <Container size="wide" key="intro">
           <div className="grid gap-5 md:grid-cols-[1.1fr_1fr] md:items-center md:gap-16">
-            <div className="order-1 md:order-2 relative aspect-[16/9] md:aspect-6/5 overflow-hidden rounded-2xl border border-(--cream)/15">
+            <div className="order-1 md:order-2 relative aspect-16/9 md:aspect-6/5 overflow-hidden rounded-2xl border border-(--cream)/15">
               <Image
                 src="/img/sobre_nosotros.jpeg"
                 alt="Familia caficultora"
