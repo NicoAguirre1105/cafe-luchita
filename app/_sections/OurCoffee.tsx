@@ -6,6 +6,17 @@ import ScrollChapter from "../_components/ScrollChapter"
 import { Container } from "../_components/Section"
 import SectionHeader from "../_components/SectionHeader"
 import BeanIcon from "../_components/BeanIcon"
+import {
+  ColdBrewIcon,
+  FrenchPressIcon,
+  PotIcon,
+  CoffeeMakerIcon,
+  FilterIcon,
+  AeroPressIcon,
+  EspressoIcon,
+  MokaIcon,
+  TurkishPotIcon,
+} from "../_components/BrewIcons"
 
 const roasts = [
   {
@@ -44,13 +55,13 @@ const roasts = [
 ]
 
 const grinds = [
-  { name: "Extra grueso", look: "Sal marina gruesa", time: "+1h", uses: "Cold brew" },
-  { name: "Grueso", look: "Sal de grano", time: "4–10 min", uses: "Prensa francesa" },
-  { name: "Medio grueso", look: "Arena gruesa", time: "3–4 min", uses: "Café de olla" },
-  { name: "Medio", look: "Arena de playa", time: "2–4 min", uses: "Cafetera, café pasado" },
-  { name: "Medio fino", look: "Azúcar común", time: "1–2 min", uses: "AeroPress" },
-  { name: "Fino", look: "Sal de mesa", time: "20 s – 1 min", uses: "Espresso" },
-  { name: "Extra fino", look: "Harina", time: "Hervido directo", uses: "Café turco" },
+  { name: "Extra grueso", look: "Sal marina gruesa", time: "+1h", uses: "Cold brew", icons: [ColdBrewIcon] },
+  { name: "Grueso", look: "Sal de grano", time: "4–10 min", uses: "Prensa francesa", icons: [FrenchPressIcon] },
+  { name: "Medio grueso", look: "Arena gruesa", time: "3–4 min", uses: "Café de olla", icons: [PotIcon] },
+  { name: "Medio", look: "Arena de playa", time: "2–4 min", uses: "Cafetera, café pasado", icons: [CoffeeMakerIcon, FilterIcon] },
+  { name: "Medio fino", look: "Azúcar común", time: "1–2 min", uses: "AeroPress", icons: [AeroPressIcon] },
+  { name: "Fino", look: "Sal de mesa", time: "20 s – 1 min", uses: "Espresso, Moka", icons: [EspressoIcon, MokaIcon] },
+  { name: "Extra fino", look: "Harina", time: "Hervido directo", uses: "Café turco", icons: [TurkishPotIcon] },
 ]
 
 export function OurCoffeeOrigin() {
@@ -391,9 +402,16 @@ function GrindTable() {
           <p className="text-xs uppercase tracking-widest text-(--green) font-semibold">
             Ideal para
           </p>
-          <p className="mt-2 font-(family-name:--font-display) text-2xl text-(--coffee)">
-            {grinds[active].uses}
-          </p>
+          <div className="mt-2 flex items-center gap-3">
+            <p className="font-(family-name:--font-display) text-2xl text-(--coffee)">
+              {grinds[active].uses}
+            </p>
+            <div className="flex items-center gap-1.5 text-(--coffee)">
+              {grinds[active].icons.map((Icon, i) => (
+                <Icon key={i} size={26} />
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Visual: puntos que cambian de tamaño */}

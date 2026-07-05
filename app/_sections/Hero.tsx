@@ -137,7 +137,7 @@ export default function Hero({
         ref={registroRef}
         className="absolute bottom-14 right-4 md:bottom-16 md:right-10 z-10 text-[10px] md:text-xs text-(--cream)/80 tracking-wide"
       >
-        Registro sanitario: RSA-58213-INHQC
+        Registro sanitario: 48434-ALN-0925
       </div>
 
       {/* Scroll indicator — arrow */}

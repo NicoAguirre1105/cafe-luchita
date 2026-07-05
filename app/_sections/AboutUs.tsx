@@ -12,7 +12,7 @@ const timeline = [
       "El cultivo de café constituye la base económica y de unión familiar alrededor del café en las tierras de Valladolid.",
   },
   {
-    year: "1995",
+    year: "1997",
     title: "Cararango, el primer paso de un sueño",
     description:
       "Allí, entre montañas y esfuerzo, comenzamos a escribir el capítulo del cultivo de nuestro café.",
