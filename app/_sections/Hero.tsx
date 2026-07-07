@@ -74,7 +74,7 @@ export default function Hero({
 
       <div
         ref={contentRef}
-        className="relative z-10 w-full max-w-5xl mx-auto px-6 md:px-10 pt-28 md:pt-0 flex flex-col gap-6 md:gap-8"
+        className="relative z-10 w-full max-w-5xl mx-auto px-6 md:px-10 pt-28 md:pt-0 flex flex-col gap-6"
       >
 
         {/* Eyebrow */}
@@ -90,7 +90,7 @@ export default function Hero({
           className="animate-fade-up font-(family-name:--font-display) text-(--cream) font-bold leading-none max-w-3xl"
           style={{ animationDelay: "0.08s", fontSize: "clamp(2.8rem, 7vw, 6.5rem)" }}
         >
-          El sabor de{" "}
+          Lo mejor de{" "}
           <em className="not-italic text-(--orange) font-semibold">nuestra</em>{" "}
           tierra, en tu taza.
         </h1>

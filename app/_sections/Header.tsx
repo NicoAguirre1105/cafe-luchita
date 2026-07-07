@@ -167,7 +167,7 @@ export default function Header({
 
       {/* Mobile menu */}
       <div
-        className={`lg:hidden fixed inset-x-0 top-[var(--header-h)] h-[calc(100dvh_-_var(--header-h))] bg-(--cream) transition-transform duration-300 ease-out ${
+        className={`lg:hidden fixed inset-x-0 top-(--header-h) h-[calc(100dvh_-_var(--header-h))] bg-(--cream) transition-transform duration-300 ease-out ${
           isMenuOpen ? "translate-x-0" : "translate-x-full pointer-events-none"
         }`}
       >
