@@ -8,45 +8,27 @@ import SectionHeader from "../_components/SectionHeader"
 const testimonials = [
   {
     quote:
-      "Llevo años buscando un café que sepa a casa. Este me lo recordó desde el primer sorbo. Y que llegue a la puerta sin esfuerzo, mejor todavía.",
-    author: "Andrea M.",
+      "Café LUCHITA es súper delicioso. Me encanta su aroma penetrante y delicado a la vez. Ideal para disfrutarlo a cualquier hora del día. Es, sin duda, un excelente producto y es Ecuatoriano!!",
+    author: "Mercedes M.",
     role: "Cliente en Quito",
   },
   {
     quote:
-      "Lo pedimos para el coworking y la gente preguntaba qué café era. Cambia el ambiente: el ritual del café por la mañana se siente distinto.",
-    author: "Mateo R.",
-    role: "Coworking · Quito",
-  },
-  {
-    quote:
-      "Mi mamá toma café desde siempre y me dijo: 'este sí es café'. No hay mejor crítica que esa.",
-    author: "Carolina V.",
+      "Una caricia al alma en cada taza! Desde el primer sorbo, mi corazón se quedó con él para siempre. Su aroma inconfundible tiene la magia de llenar el hogar de calidez y paz. ¡Gracias por hacer un producto con tanto amor.",
+    author: "Ruth",
     role: "Cliente en Loja",
   },
   {
     quote:
-      "Pedí para mi familia en Cuenca sin saber si el envío nacional iba a funcionar bien. Llegó perfecto y a tiempo.",
-    author: "Diego P.",
-    role: "Cliente en Cuenca",
-  },
-  {
-    quote:
-      "Tenemos el convenio para la oficina hace meses. Ya nadie se acuerda de comprar café en el súper.",
-    author: "Valentina S.",
-    role: "Oficina · Guayaquil",
-  },
-  {
-    quote:
-      "El tueste medio es justo lo que buscaba: no amargo, no ácido. Se nota que es café de altura.",
-    author: "Fernando A.",
-    role: "Cliente en Ambato",
-  },
-  {
-    quote:
-      "Regalé una funda en Navidad y terminé siendo yo quien pide ahora todos los meses.",
-    author: "Isabel T.",
+      "Café Luchita es, sin lugar a dudas, el mejor café que he probado. Tiene un aroma y sabor inigualable, que hace que disfrutes cada sorbo.",
+    author: "Fanny R.",
     role: "Cliente en Loja",
+  },
+  {
+    quote:
+      "Un café que lleva el cariño y tradición familiar de Loja. Un sabor único y con mucho aroma. El mejor regalo al paladar",
+    author: "Cristina D.",
+    role: "Cliente en Quito",
   },
 ]
 
@@ -63,7 +45,7 @@ export default function Testimonials() {
               title={
                 <>
                   Una taza que se{" "}
-                  <em className="not-italic italic text-(--green) font-semibold">comparte</em>.
+                  <em className="not-italic text-(--green) font-semibold">comparte</em>.
                 </>
               }
               description="No vendemos café — acompañamos rituales. Esto nos cuentan quienes ya lo preparan en casa o en la oficina."
