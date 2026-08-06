@@ -86,10 +86,10 @@ export default function Footer() {
           <p className="flex items-center justify-center gap-1.5">
             Sitio web realizado por 
             <a
-              href="https://www.linkedin.com/in/nicolas-aguirre-5a2a483ab/"
+              href="https://nicolasaguirre.dev"
               target="_blank"
               rel="noreferrer"
-              aria-label="LinkedIn de Nicolas Aguirre"
+              aria-label="Nicolas Aguirre"
               className="inline-flex cursor-pointer text-(--cream)/60 transition-transform duration-200 hover:scale-102 hover:text-(--orange) underline"
             >
               Nicolas Aguirre Castillo
