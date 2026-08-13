@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Café Luchita
 
-## Getting Started
+Sitio web de una sola página (landing) para la marca de café ecuatoriano Café Luchita. Es un sitio estático con Next.js, sin backend — el formulario de contacto se maneja con Formspree.
 
-First, run the development server:
+## Stack
+
+- Next.js (App Router)
+- React
+- Tailwind CSS
+- Formspree (formulario de contacto)
+
+## Requisitos
+
+- Node.js 18+
+- npm
+
+## Comandos
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install    # Instalar dependencias
+npm run dev    # Servidor de desarrollo (http://localhost:3000)
+npm run build  # Build de producción
+npm start      # Servidor de producción
+npm run lint   # Linter (ESLint)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Estructura
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Navegación por anclas (`#Inicio`, `#Producto`, `#SobreNosotros`) sobre una sola página. Todo el UI vive en `app/`:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `app/page.tsx` — Componente raíz. Controla el estado del modal de contacto y compone las secciones.
+- `app/_sections/` — Secciones de página completa (Header, Hero, Properties, Product, AboutUs, CTA, ContactModal, Footer).
+- `app/_components/` — Componentes reutilizables (Product_Card, Property_Card, Slide, InfoModal, Spinner).
+- `app/layout.tsx` — Layout raíz: fuente Montserrat, metadata, OpenGraph.
 
-## Learn More
+## Formulario de contacto
 
-To learn more about Next.js, take a look at the following resources:
+Formspree (`id: mrerpaww`) en `app/_sections/ContactModal.tsx`. Campos: `full-name`, `client-phone`, `subject`, `message`. Se resetea automáticamente 4 segundos después de un envío exitoso.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## SEO
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Idioma: español (`lang="es"`, locale `es_EC`)
+- Canonical: `https://cafe-luchita.com`
+- `app/robots.ts` y `app/sitemap.ts` para configuración de crawling.
 
-## Deploy on Vercel
+## Documentación adicional
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [CLAUDE.md](CLAUDE.md) — guía para trabajar en el repo con Claude Code.
+- [design_brief.md](design_brief.md) — explicación completa del diseño.
