@@ -21,7 +21,7 @@ const nav = [
 
 export default function Footer() {
   return (
-    <footer className="relative -mt-px bg-(--espresso) text-(--cream) px-5 py-16 md:px-10 md:py-20">
+    <footer className="bg-(--espresso) text-(--cream) px-5 py-16 md:px-10 md:py-20">
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr] md:gap-16">
           <div className="flex flex-col gap-5 items-start">

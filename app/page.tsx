@@ -139,7 +139,7 @@ export default function Home() {
       <PageLoader visible={!isReady} />
       <Header isContactModalOpen={isContactModalOpen} handleContactModal={handleContactModal} />
       <ContactModal isContactModalOpen={isContactModalOpen} />
-      <main>
+      <main className="bg-(--espresso)">
         <Hero handleContactModal={handleContactModal} onImageLoad={() => setHeroImageLoaded(true)} />
         <CoffeeSections>
           <HowItWorks />
