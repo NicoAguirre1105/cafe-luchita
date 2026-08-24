@@ -18,6 +18,7 @@ import Testimonials from "./_sections/Testimonials"
 import AboutUs from "./_sections/AboutUs"
 import FinalCTA from "./_sections/FinalCTA"
 import Footer from "./_sections/Footer"
+import Newsletter from "./_sections/Newsletter"
 
 export default function Home() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false)
@@ -138,7 +139,7 @@ export default function Home() {
       <PageLoader visible={!isReady} />
       <Header isContactModalOpen={isContactModalOpen} handleContactModal={handleContactModal} />
       <ContactModal isContactModalOpen={isContactModalOpen} />
-      <main>
+      <main className="bg-(--espresso)">
         <Hero handleContactModal={handleContactModal} onImageLoad={() => setHeroImageLoaded(true)} />
         <CoffeeSections>
           <HowItWorks />
@@ -153,7 +154,9 @@ export default function Home() {
           <Testimonials />
           <AboutUs />
           <FinalCTA handleContactModal={handleContactModal} />
+          <Newsletter />
         </CoffeeSections>
+        
       </main>
       <Footer />
     </>
